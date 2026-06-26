@@ -1,0 +1,86 @@
+{
+  "type": "FeatureCollection",
+  "name": "Uganda Districts (simplified demo)",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-KLA", "district_name": "Kampala", "region": "Central", "crop": "Maize", "production_index": 0.72 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[32.52, 0.25], [32.68, 0.25], [32.68, 0.38], [32.52, 0.38], [32.52, 0.25]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-WAK", "district_name": "Wakiso", "region": "Central", "crop": "Banana", "production_index": 0.85 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[32.35, 0.05], [32.55, 0.05], [32.55, 0.28], [32.35, 0.28], [32.35, 0.05]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-MUK", "district_name": "Mukono", "region": "Central", "crop": "Coffee", "production_index": 0.68 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[32.75, 0.15], [33.05, 0.15], [33.05, 0.45], [32.75, 0.45], [32.75, 0.15]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-JIN", "district_name": "Jinja", "region": "Eastern", "crop": "Sugarcane", "production_index": 0.91 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[33.15, 0.35], [33.45, 0.35], [33.45, 0.55], [33.15, 0.55], [33.15, 0.35]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-MBL", "district_name": "Mbale", "region": "Eastern", "crop": "Arabica Coffee", "production_index": 0.77 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[34.05, 0.95], [34.35, 0.95], [34.35, 1.25], [34.05, 1.25], [34.05, 0.95]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-GUL", "district_name": "Gulu", "region": "Northern", "crop": "Sorghum", "production_index": 0.55 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[32.15, 2.65], [32.55, 2.65], [32.55, 3.05], [32.15, 3.05], [32.15, 2.65]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-LIR", "district_name": "Lira", "region": "Northern", "crop": "Cassava", "production_index": 0.62 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[32.55, 2.15], [33.05, 2.15], [33.05, 2.55], [32.55, 2.55], [32.55, 2.15]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-MBR", "district_name": "Mbarara", "region": "Western", "crop": "Banana", "production_index": 0.88 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[30.55, -0.75], [30.95, -0.75], [30.95, -0.35], [30.55, -0.35], [30.55, -0.75]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-KAB", "district_name": "Kabale", "region": "Western", "crop": "Irish Potato", "production_index": 0.74 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[29.85, -1.35], [30.25, -1.35], [30.25, -0.95], [29.85, -0.95], [29.85, -1.35]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "district_id": "UG-MAS", "district_name": "Masaka", "region": "Central", "crop": "Coffee", "production_index": 0.81 },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[31.65, -0.15], [32.05, -0.15], [32.05, 0.15], [31.65, 0.15], [31.65, -0.15]]]
+      }
+    }
+  ]
+}

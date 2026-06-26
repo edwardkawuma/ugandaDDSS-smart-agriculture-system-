@@ -1,0 +1,174 @@
+{
+  "byEntity": {
+    "advisories": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "ai_models": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "alerts": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "beneficiaries": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "crops": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "custom_queries": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "data_hub": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "districts": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "farm_activities": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "farmers": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "farming_practices": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "farms": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "field_visits": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "impact": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "integrations": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "market_prices": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "monitoring": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "national_statistics": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "notifications": {
+      "rowCount": 1,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "pest_alerts": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "pest_reports": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "pest_sightings": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "pests": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "price_alerts": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "production_reports": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "programme_kpis": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "public_reports": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "recommendations": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "research_outputs": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "seasonal_calendars": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "statistical_analysis": {
+      "rowCount": 1,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "treatments": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "varieties": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    },
+    "weather": {
+      "rowCount": 5,
+      "ok": false,
+      "fallback": "programmatic"
+    }
+  }
+}

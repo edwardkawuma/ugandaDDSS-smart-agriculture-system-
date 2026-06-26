@@ -1,0 +1,12 @@
+/* Sonner toast spacing — use data-attribute selectors for specificity over inline styles */
+[data-sonner-toaster] [data-sonner-toast] > div {
+  gap: 0.25rem !important;
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-content] {
+  gap: 0.25rem !important;
+}
+
+[data-sonner-toaster] [data-sonner-toast] [data-icon] {
+  margin-right: 0.25rem !important;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "agrismart-uganda",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AgriSmart Uganda — agricultural intelligence platform with geospatial mapping",
+  "scripts": {
+    "install:all": "npm install --prefix frontend && npm install --prefix backend",
+    "dev": "concurrently -n frontend,backend -c cyan,magenta \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\"",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "dev:backend": "npm run dev --prefix backend",
+    "build": "npm run build --prefix frontend",
+    "preview": "npm run preview --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

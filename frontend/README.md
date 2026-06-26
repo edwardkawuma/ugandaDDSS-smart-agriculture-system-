@@ -1,0 +1,3 @@
+- Static mock data
+- Theme (user else auto)
+- By defailt create 1st pafe and simuntensult build plan

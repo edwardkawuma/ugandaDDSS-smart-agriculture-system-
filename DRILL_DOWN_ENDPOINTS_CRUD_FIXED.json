@@ -1,0 +1,941 @@
+[
+  {
+    "unique_page_id": "page_1",
+    "list_of_endpoints": []
+  },
+  {
+    "unique_page_id": "page_2",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/maps/crop-zones",
+        "purpose": "Fetch crop growing zones by district for public map layer overlay"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/weather-overlay",
+        "purpose": "Fetch current weather conditions per district for map overlay"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/pest-alerts",
+        "purpose": "Fetch active pest and disease alert areas with severity for map overlay"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/district-stats",
+        "purpose": "Fetch district-level production summary statistics for map popup cards"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_3",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Fetch crop profiles and descriptions for the four priority crops"
+      },
+      {
+        "method": "GET",
+        "path": "/pests/list",
+        "purpose": "Fetch pest and disease information entries with climate triggers and severity"
+      },
+      {
+        "method": "GET",
+        "path": "/farming-practices/list",
+        "purpose": "Fetch climate-smart farming practice guides recommended by NARO and MAAIF"
+      },
+      {
+        "method": "GET",
+        "path": "/varieties/list",
+        "purpose": "Fetch improved crop variety guides with yield and resistance attributes"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_4",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/seasonal-calendars/list",
+        "purpose": "Fetch seasonal calendar data for all four crops including planting and harvest windows"
+      },
+      {
+        "method": "GET",
+        "path": "/seasonal-calendars/pest-risk-windows",
+        "purpose": "Fetch seasonal pest and disease risk windows by crop and agro-ecological zone"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_5",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/weather/current",
+        "purpose": "Fetch real-time weather conditions for farmer's registered district"
+      },
+      {
+        "method": "GET",
+        "path": "/weather/forecast",
+        "purpose": "Fetch 10-day weather forecast for farmer's registered district"
+      },
+      {
+        "method": "GET",
+        "path": "/alerts/list",
+        "purpose": "Fetch active tiered weather alerts for farmer's district and agro-ecological zone"
+      },
+      {
+        "method": "PUT",
+        "path": "/notifications/preferences",
+        "purpose": "Update farmer SMS and in-app notification opt-in preferences for weather alerts"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_6",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/pest-alerts/list",
+        "purpose": "Fetch active and upcoming pest and disease alerts for farmer's registered crops and district"
+      },
+      {
+        "method": "GET",
+        "path": "/treatments/list",
+        "purpose": "Fetch approved scouting actions and treatment options for active pest and disease threats"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_7",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/recommendations/list",
+        "purpose": "Fetch AI-generated personalized agronomic recommendations for farmer's crops and location"
+      },
+      {
+        "method": "GET",
+        "path": "/recommendations/early-warnings",
+        "purpose": "Fetch proactive early warning recommendations 5-10 days ahead based on weather forecast"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_8",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/farms/list",
+        "purpose": "Fetch list of farmer's registered farms and fields with GPS boundaries and crop data"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop selector when registering a new farm or field in the farm create form"
+      },
+      {
+        "method": "POST",
+        "path": "/farms/create",
+        "purpose": "Register a new farm or field with GPS boundaries and initial crop assignments"
+      },
+      {
+        "method": "DELETE",
+        "path": "/farms/delete",
+        "purpose": "Delete a registered farm or field by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_8_sub_1",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/farms/detail",
+        "purpose": "Fetch complete profile of a single farm field including GPS, crops, and activity history"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop selector when updating crop growth stage in the farm field edit form"
+      },
+      {
+        "method": "GET",
+        "path": "/pests/list",
+        "purpose": "Lookup: list all pests and diseases to populate the pest selector in the pest sighting submission form"
+      },
+      {
+        "method": "PUT",
+        "path": "/farms/update",
+        "purpose": "Update farm field information including crop growth stage and field details"
+      },
+      {
+        "method": "POST",
+        "path": "/farm-activities/create",
+        "purpose": "Log a new dated activity entry for the farm field with observations"
+      },
+      {
+        "method": "GET",
+        "path": "/farm-activities/list",
+        "purpose": "Fetch the dated activity log entries recorded for this farm field"
+      },
+      {
+        "method": "GET",
+        "path": "/farm-activities/detail",
+        "purpose": "Fetch a single farm activity log entry by id"
+      },
+      {
+        "method": "PUT",
+        "path": "/farm-activities/update",
+        "purpose": "Update an existing farm activity log entry's details and observations"
+      },
+      {
+        "method": "DELETE",
+        "path": "/farm-activities/delete",
+        "purpose": "Delete a farm activity log entry by id"
+      },
+      {
+        "method": "POST",
+        "path": "/pest-sightings/create",
+        "purpose": "Submit an observed pest sighting from this field for community monitoring contribution"
+      },
+      {
+        "method": "GET",
+        "path": "/pest-sightings/list",
+        "purpose": "Fetch the observed pest and disease sighting records contributed for this farm field"
+      },
+      {
+        "method": "GET",
+        "path": "/pest-sightings/detail",
+        "purpose": "Fetch a single pest sighting record by id"
+      },
+      {
+        "method": "PUT",
+        "path": "/pest-sightings/update",
+        "purpose": "Update an existing pest sighting record's observation details"
+      },
+      {
+        "method": "DELETE",
+        "path": "/pest-sightings/delete",
+        "purpose": "Delete a pest sighting record by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_9",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/market-prices/list",
+        "purpose": "Fetch current commodity prices for Coffee, Maize, Beans, and Hass Avocado across Ugandan markets"
+      },
+      {
+        "method": "GET",
+        "path": "/market-prices/trends",
+        "purpose": "Fetch 30-day and 90-day price trends and regional price variation by district"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop selector when configuring a price threshold alert"
+      },
+      {
+        "method": "PUT",
+        "path": "/price-alerts/update",
+        "purpose": "Configure price threshold SMS alert preferences for target selling price notifications"
+      },
+      {
+        "method": "GET",
+        "path": "/price-alerts/list",
+        "purpose": "Fetch the farmer's configured price threshold alerts"
+      },
+      {
+        "method": "GET",
+        "path": "/price-alerts/detail",
+        "purpose": "Fetch a single configured price threshold alert by id"
+      },
+      {
+        "method": "POST",
+        "path": "/price-alerts/create",
+        "purpose": "Create a new price threshold alert for a target selling price on a crop"
+      },
+      {
+        "method": "DELETE",
+        "path": "/price-alerts/delete",
+        "purpose": "Delete a configured price threshold alert by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_10",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/farm-management/stats",
+        "purpose": "Fetch KPI summary including total farmers, pending visits, and active alert count for assigned area"
+      },
+      {
+        "method": "GET",
+        "path": "/farmers/list",
+        "purpose": "Fetch filterable list of farmers in extension worker's assigned district with alert and visit status"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_11",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/advisories/list",
+        "purpose": "Fetch list of advisories created by extension worker with draft and published status"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the target crop selector in the advisory create and edit form"
+      },
+      {
+        "method": "GET",
+        "path": "/districts/list",
+        "purpose": "Lookup: list all districts to populate the target district selector in the advisory create and edit form"
+      },
+      {
+        "method": "POST",
+        "path": "/advisories/create",
+        "purpose": "Create a new crop advisory with content, target crops, districts, and farmer segments"
+      },
+      {
+        "method": "PUT",
+        "path": "/advisories/update",
+        "purpose": "Update advisory content, targeting parameters, and publication status"
+      },
+      {
+        "method": "DELETE",
+        "path": "/advisories/delete",
+        "purpose": "Delete an unpublished advisory draft by id"
+      },
+      {
+        "method": "GET",
+        "path": "/advisories/detail",
+        "purpose": "Fetch a single advisory record by id including content and targeting parameters"
+      },
+      {
+        "method": "GET",
+        "path": "/alerts/active/list",
+        "purpose": "Fetch currently active pest and disease alerts to link when authoring advisories"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_12",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/farmers/list",
+        "purpose": "Fetch searchable and filterable list of farmers in extension worker's assigned district"
+      },
+      {
+        "method": "POST",
+        "path": "/farmers/create",
+        "purpose": "Register a new farmer record in the extension worker's assigned district directory"
+      },
+      {
+        "method": "DELETE",
+        "path": "/farmers/delete",
+        "purpose": "Delete a farmer record from the directory by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_12_sub_1",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/farmers/detail",
+        "purpose": "Fetch complete farmer profile including farms, advisory history, and field visit logs"
+      },
+      {
+        "method": "GET",
+        "path": "/advisories/list",
+        "purpose": "Lookup: list available advisories to populate the advisory selector when assigning a targeted advisory to this farmer"
+      },
+      {
+        "method": "POST",
+        "path": "/field-visits/create",
+        "purpose": "Schedule or log a new field visit for this farmer with observations and follow-up actions"
+      },
+      {
+        "method": "POST",
+        "path": "/advisories/assign",
+        "purpose": "Assign a targeted advisory to this specific farmer"
+      },
+      {
+        "method": "PUT",
+        "path": "/farmers/update",
+        "purpose": "Update farmer contact preferences and SMS and email notification settings"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_13",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/field-visits/list",
+        "purpose": "Fetch extension worker's field visit calendar, history, and outstanding follow-ups"
+      },
+      {
+        "method": "GET",
+        "path": "/farmers/list",
+        "purpose": "Lookup: list farmers in the assigned area to populate the farmer selector when scheduling or logging a field visit"
+      },
+      {
+        "method": "POST",
+        "path": "/field-visits/create",
+        "purpose": "Log a new field visit with observations, advisories given, and follow-up actions"
+      },
+      {
+        "method": "PUT",
+        "path": "/field-visits/update",
+        "purpose": "Update a field visit record with additional observations or follow-up action status"
+      },
+      {
+        "method": "DELETE",
+        "path": "/field-visits/delete",
+        "purpose": "Delete a scheduled field visit by id"
+      },
+      {
+        "method": "GET",
+        "path": "/field-visits/detail",
+        "purpose": "Fetch a single field visit record by id including observations and follow-up actions"
+      },
+      {
+        "method": "GET",
+        "path": "/field-visits/export",
+        "purpose": "Export structured field visit reports in NAADS district reporting format"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_14",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/alerts/list",
+        "purpose": "Fetch all active pest, disease, and weather alerts for extension worker's assigned district"
+      },
+      {
+        "method": "GET",
+        "path": "/advisories/coverage",
+        "purpose": "Fetch advisory response status for each active alert showing addressed and pending threats"
+      },
+      {
+        "method": "GET",
+        "path": "/reports/alerts-history",
+        "purpose": "Fetch district-level seasonal alert history, compliance rates, and advisory coverage statistics"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_15",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Fetch catalog of all available datasets with metadata, documentation, and category groupings"
+      },
+      {
+        "method": "GET",
+        "path": "/data-hub/preview",
+        "purpose": "Fetch sample records preview for a selected dataset before download or analysis"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_16",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/ai-models/list",
+        "purpose": "Fetch available AI and ML models with metadata, version history, and parameter descriptions"
+      },
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Lookup: list available datasets to populate the dataset selector when configuring an AI model inference run"
+      },
+      {
+        "method": "POST",
+        "path": "/ai-models/run",
+        "purpose": "Execute an AI model inference job with configured input parameters and dataset selections"
+      },
+      {
+        "method": "GET",
+        "path": "/ai-models/results",
+        "purpose": "Fetch completed model inference results and predictions for visualization and download"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_17",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Fetch available datasets for selection in statistical analysis workspace"
+      },
+      {
+        "method": "POST",
+        "path": "/statistical-analysis/run",
+        "purpose": "Execute statistical analysis with selected datasets, methods, and filter parameters"
+      },
+      {
+        "method": "GET",
+        "path": "/statistical-analysis/results",
+        "purpose": "Fetch completed statistical analysis results, tables, and generated charts for export"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_18",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/custom-queries/list",
+        "purpose": "Fetch researcher's saved query templates for reuse and sharing with colleagues"
+      },
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Lookup: list available datasets and tables to populate the dataset selector in the custom query builder"
+      },
+      {
+        "method": "POST",
+        "path": "/custom-queries/execute",
+        "purpose": "Execute a custom query against hub datasets and return paginated inline results"
+      },
+      {
+        "method": "POST",
+        "path": "/custom-queries/create",
+        "purpose": "Save a new named query template with filter and aggregation configuration"
+      },
+      {
+        "method": "PUT",
+        "path": "/custom-queries/update",
+        "purpose": "Update an existing saved query template configuration"
+      },
+      {
+        "method": "DELETE",
+        "path": "/custom-queries/delete",
+        "purpose": "Delete a saved query template by id"
+      },
+      {
+        "method": "GET",
+        "path": "/custom-queries/detail",
+        "purpose": "Fetch a single saved query template by id including its filter and aggregation configuration"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_19",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/research-outputs/list",
+        "purpose": "Fetch searchable list of published research outputs with metadata and category filters"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop focus selector in the research output upload form"
+      },
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Lookup: list available datasets to populate the datasets-used selector in the research output upload form"
+      },
+      {
+        "method": "GET",
+        "path": "/ai-models/list",
+        "purpose": "Lookup: list available AI models to populate the models-applied selector in the research output upload form"
+      },
+      {
+        "method": "POST",
+        "path": "/research-outputs/create",
+        "purpose": "Upload a new research output with title, authors, abstract, and linked datasets"
+      },
+      {
+        "method": "PUT",
+        "path": "/research-outputs/update",
+        "purpose": "Update research output metadata and submission approval workflow status"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_19_sub_1",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/research-outputs/detail",
+        "purpose": "Fetch complete record of a single research output including linked datasets and visualizations"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop focus selector when editing research output metadata"
+      },
+      {
+        "method": "GET",
+        "path": "/data-hub/datasets",
+        "purpose": "Lookup: list available datasets to populate the datasets-used selector when editing research output metadata"
+      },
+      {
+        "method": "GET",
+        "path": "/ai-models/list",
+        "purpose": "Lookup: list available AI models to populate the models-applied selector when editing research output metadata"
+      },
+      {
+        "method": "PUT",
+        "path": "/research-outputs/update",
+        "purpose": "Update research output metadata, version history, and approval status by owner"
+      },
+      {
+        "method": "DELETE",
+        "path": "/research-outputs/delete",
+        "purpose": "Delete or retract a research output publication by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_20",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/weather/historical",
+        "purpose": "Fetch historical weather time series by district and agro-ecological zone with season filters"
+      },
+      {
+        "method": "GET",
+        "path": "/weather/current",
+        "purpose": "Fetch real-time weather data disaggregated by district for analysis and correlation"
+      },
+      {
+        "method": "GET",
+        "path": "/weather/export",
+        "purpose": "Export weather datasets in CSV or JSON format for external research tools"
+      },
+      {
+        "method": "POST",
+        "path": "/weather/export-schedule",
+        "purpose": "Configure automated periodic weather data exports to external institutional systems"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_21",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/policy/stats",
+        "purpose": "Fetch national headline KPIs including total production, active alerts, and advisory coverage rates"
+      },
+      {
+        "method": "GET",
+        "path": "/policy/alerts-summary",
+        "purpose": "Fetch count and severity breakdown of active pest and disease alerts across all districts"
+      },
+      {
+        "method": "GET",
+        "path": "/policy/district-map",
+        "purpose": "Fetch district-level agricultural data for national choropleth map visualization"
+      },
+      {
+        "method": "GET",
+        "path": "/policy/season-trends",
+        "purpose": "Fetch current season performance benchmarked against five-year historical baselines"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_22",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/national-statistics/production",
+        "purpose": "Fetch crop production volumes, area, and yield per hectare filterable by crop, district, season, and year"
+      },
+      {
+        "method": "GET",
+        "path": "/national-statistics/trends",
+        "purpose": "Fetch year-over-year production trends and district comparisons against food security targets"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_23",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/production-reports/templates",
+        "purpose": "Fetch available pre-built report templates for seasonal, district, and crop-specific reports"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop selection control when configuring production report parameters"
+      },
+      {
+        "method": "GET",
+        "path": "/districts/list",
+        "purpose": "Lookup: list all districts to populate the district selection control when configuring production report parameters"
+      },
+      {
+        "method": "POST",
+        "path": "/production-reports/generate",
+        "purpose": "Generate a production report with configured parameters including time range and districts"
+      },
+      {
+        "method": "GET",
+        "path": "/production-reports/list",
+        "purpose": "Fetch list of previously generated production reports available for download"
+      },
+      {
+        "method": "POST",
+        "path": "/production-reports/schedule",
+        "purpose": "Schedule automated recurring report generation for periodic submission obligations"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_24",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/pest-reports/list",
+        "purpose": "Fetch national pest and disease outbreak summaries by crop and district with tiered alert logs"
+      },
+      {
+        "method": "GET",
+        "path": "/crops/list",
+        "purpose": "Lookup: list all crops to populate the crop selector when generating a pest and disease situation report"
+      },
+      {
+        "method": "GET",
+        "path": "/districts/list",
+        "purpose": "Lookup: list all districts to populate the district selector when generating a pest and disease situation report"
+      },
+      {
+        "method": "GET",
+        "path": "/pest-reports/trends",
+        "purpose": "Fetch historical outbreak trend data across seasons with response effectiveness metrics"
+      },
+      {
+        "method": "POST",
+        "path": "/pest-reports/generate",
+        "purpose": "Generate a formal pest and disease situation report for policy decisions and FAO FAMEWS export"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_25",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/maps/district-production",
+        "purpose": "Fetch crop production output heat map data by district for policy mapping"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/pest-alerts",
+        "purpose": "Fetch active pest and disease alert zones with severity colour coding for district map"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/extension-coverage",
+        "purpose": "Fetch extension service coverage footprint data by district for spatial analysis"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/farmer-density",
+        "purpose": "Fetch farmer registration density data by district for mapping layer"
+      },
+      {
+        "method": "GET",
+        "path": "/maps/weather-overlay",
+        "purpose": "Fetch current weather condition overlay data for district map visualization"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_26",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/monitoring/stats",
+        "purpose": "Fetch programme reach metrics including farmers covered, districts active, and cumulative KPI progress"
+      },
+      {
+        "method": "GET",
+        "path": "/monitoring/programmes/list",
+        "purpose": "Fetch list of monitored development programmes with status, milestones, and disbursement tracking"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_27",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/monitoring/programmes/list",
+        "purpose": "Fetch list of programmes available for impact assessment configuration and selection"
+      },
+      {
+        "method": "POST",
+        "path": "/impact/assessment/run",
+        "purpose": "Execute impact assessment calculation comparing beneficiary outcomes against baseline with chosen methodology"
+      },
+      {
+        "method": "GET",
+        "path": "/impact/assessment/results",
+        "purpose": "Fetch completed impact assessment results including yield improvement and adoption rate metrics"
+      },
+      {
+        "method": "GET",
+        "path": "/impact/baseline/list",
+        "purpose": "Fetch control baseline comparison datasets for attribution analysis"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_28",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/programme-kpis/list",
+        "purpose": "Fetch KPI scorecards and real-time progress against logframe targets for monitored programmes"
+      },
+      {
+        "method": "PUT",
+        "path": "/programme-kpis/update",
+        "purpose": "Update KPI framework configuration, target values, and threshold alert settings"
+      },
+      {
+        "method": "GET",
+        "path": "/programme-kpis/detail",
+        "purpose": "Fetch a single programme KPI record by id including target values and progress"
+      },
+      {
+        "method": "POST",
+        "path": "/programme-kpis/create",
+        "purpose": "Add a new KPI with target values to a programme's logframe framework"
+      },
+      {
+        "method": "DELETE",
+        "path": "/programme-kpis/delete",
+        "purpose": "Remove a KPI from a programme's logframe framework by id"
+      },
+      {
+        "method": "PUT",
+        "path": "/notifications/preferences",
+        "purpose": "Configure KPI threshold email alert notification preferences for underperforming indicators"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_29",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/beneficiaries/list",
+        "purpose": "Fetch searchable registry of programme beneficiaries filterable by district, crop, programme, and date"
+      },
+      {
+        "method": "GET",
+        "path": "/beneficiaries/stats",
+        "purpose": "Fetch beneficiary coverage statistics including distribution by district and enrolment status"
+      },
+      {
+        "method": "POST",
+        "path": "/beneficiaries/create",
+        "purpose": "Enrol a new programme beneficiary into the registry with personal and programme details"
+      },
+      {
+        "method": "DELETE",
+        "path": "/beneficiaries/delete",
+        "purpose": "Remove a programme beneficiary record from the registry by id"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_29_sub_1",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/beneficiaries/detail",
+        "purpose": "Fetch complete beneficiary profile with enrolment history, inputs received, and outcome measurements"
+      },
+      {
+        "method": "GET",
+        "path": "/impact/assessment/list",
+        "purpose": "Lookup: list available impact assessments to populate the assessment selector when linking this beneficiary to an impact assessment calculation"
+      },
+      {
+        "method": "PUT",
+        "path": "/beneficiaries/update",
+        "purpose": "Annotate beneficiary record and flag for follow-up intervention by extension staff"
+      },
+      {
+        "method": "POST",
+        "path": "/impact/beneficiary/link",
+        "purpose": "Link individual beneficiary data to impact assessment calculations for attribution analysis"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_30",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/public-reports/list",
+        "purpose": "Fetch searchable list of published agricultural reports and bulletins filterable by category, crop, and date"
+      }
+    ]
+  },
+  {
+    "unique_page_id": "page_31",
+    "list_of_endpoints": [
+      {
+        "method": "GET",
+        "path": "/users/profile",
+        "purpose": "Fetch current user's profile information, notification preferences, and registered area"
+      },
+      {
+        "method": "GET",
+        "path": "/districts/list",
+        "purpose": "Lookup: list all districts to populate the registered district selector in the profile update form"
+      },
+      {
+        "method": "PUT",
+        "path": "/users/profile",
+        "purpose": "Update user profile information, password, and registered district or area"
+      },
+      {
+        "method": "PUT",
+        "path": "/notifications/preferences",
+        "purpose": "Update notification delivery preferences for SMS via Twilio and email via SendGrid"
+      },
+      {
+        "method": "GET",
+        "path": "/integrations/list",
+        "purpose": "Fetch current API key configurations for third-party services for admin and research roles"
+      },
+      {
+        "method": "PUT",
+        "path": "/integrations/update",
+        "purpose": "Update and rotate API keys for OpenWeatherMap, Google Maps, Twilio, and SendGrid integrations"
+      }
+    ]
+  }
+]
