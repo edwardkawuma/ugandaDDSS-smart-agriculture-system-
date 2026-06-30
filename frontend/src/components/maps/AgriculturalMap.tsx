@@ -266,4 +266,48 @@ const FALLBACK_LAYERS: GeeLayerDefinition[] = [
       { label: 'Healthy', color: '#1a9850' },
     ],
   },
+  {
+    id: 'coffee-zones',
+    name: 'Coffee Agro-Suitability',
+    description: 'Robusta & Arabica suitability zones (elevation + rainfall)',
+    source: 'SRTM + CHIRPS',
+    legend: [
+      { label: 'Not suitable', color: '#f7f7f7' },
+      { label: 'Robusta zone', color: '#388e3c' },
+      { label: 'Arabica zone', color: '#1b5e20' },
+    ],
+  },
+  {
+    id: 'maize-zones',
+    name: 'Maize Production Zones',
+    description: 'Cropland with suitable rainfall for maize',
+    source: 'ESA WorldCover + CHIRPS',
+    legend: [
+      { label: 'Low', color: '#fff9c4' },
+      { label: 'Medium', color: '#f9a825' },
+      { label: 'High', color: '#e65100' },
+    ],
+  },
+  {
+    id: 'avocado-zones',
+    name: 'Hass Avocado Suitability',
+    description: 'Highland areas suitable for Hass avocado export production',
+    source: 'SRTM + CHIRPS',
+    legend: [
+      { label: 'Not suitable', color: '#f5f5f5' },
+      { label: 'Marginal', color: '#dcedc8' },
+      { label: 'Suitable', color: '#33691e' },
+    ],
+  },
+  {
+    id: 'soil-fertility',
+    name: 'Soil Organic Carbon',
+    description: 'SoilGrids topsoil organic carbon — proxy for fertility',
+    source: 'OpenLandMap SoilGrids',
+    legend: [
+      { label: 'Low', color: '#fff3e0' },
+      { label: 'Medium', color: '#8d6e63' },
+      { label: 'High', color: '#3e2723' },
+    ],
+  },
 ];

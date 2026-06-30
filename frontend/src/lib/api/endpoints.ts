@@ -104,6 +104,9 @@ export const Endpoint = {
   MARKET_PRICES: {
     LIST: '/market-prices/list',
     TRENDS: '/market-prices/trends',
+    UCDA: '/market-prices/ucda',
+    UBOS: '/market-prices/ubos',
+    DISTRICTS: '/market-prices/districts',
   },
   MONITORING: {
     PROGRAMMES_LIST: '/monitoring/programmes/list',
@@ -201,5 +204,12 @@ export const Endpoint = {
     FORECAST: '/weather/forecast',
     HISTORICAL: '/weather/historical',
     EXPORT_SCHEDULE: '/weather/export-schedule',
+  },
+  CROP_MONITORING: {
+    SENSORS: '/crop-monitoring/sensors',
+    NDVI_SERIES: '/crop-monitoring/ndvi-series',
+    UAV_SCANS: '/crop-monitoring/uav-scans',
+    TIMESERIES_ALERTS: '/crop-monitoring/timeseries-alerts',
+    HEALTH_SUMMARY: '/crop-monitoring/health-summary',
   },
 } as const;

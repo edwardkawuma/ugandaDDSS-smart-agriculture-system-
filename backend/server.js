@@ -6,6 +6,8 @@ import { authRouter } from './auth/routes.js';
 import { mapsRouter } from './serpapi/routes.js';
 import { syncRouter } from './sync/routes.js';
 import { userRouter } from './user/routes.js';
+import { marketRouter } from './market/routes.js';
+import { cropMonitoringRouter } from './cropmonitoring/routes.js';
 import { getSqlite } from './db/sqlite.js';
 import { seedDemoUsers } from './db/seedUsers.js';
 import { startSyncService } from './db/sync.js';
@@ -25,6 +27,8 @@ app.use('/api/user', userRouter);
 app.use('/api/maps', mapsRouter);
 app.use('/api/sync', syncRouter);
 app.use('/api/gee', geeRouter);
+app.use('/api/market-prices', marketRouter);
+app.use('/api/crop-monitoring', cropMonitoringRouter);
 
 async function bootstrap() {
   getSqlite();
@@ -32,11 +36,13 @@ async function bootstrap() {
   await startSyncService();
 
   app.listen(PORT, () => {
-    console.log(`AgriSmart API listening on http://localhost:${PORT}`);
-    console.log('  Auth:     /api/auth/*');
-    console.log('  Maps:     /api/maps/search');
-    console.log('  Sync:     /api/sync/status');
-    console.log('  GEE:      /api/gee/*');
+    console.log(`AgriSmart DDSS API listening on http://localhost:${PORT}`);
+    console.log('  Auth:          /api/auth/*');
+    console.log('  Maps:          /api/maps/search');
+    console.log('  Sync:          /api/sync/status');
+    console.log('  GEE:           /api/gee/*');
+    console.log('  Market Prices: /api/market-prices/* (UCDA/UBOS)');
+  console.log('  Crop Monitor:  /api/crop-monitoring/* (IoT/UAV/NDVI)');
   });
 }
 

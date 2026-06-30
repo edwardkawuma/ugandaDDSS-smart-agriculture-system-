@@ -59,6 +59,51 @@ export const LAYER_CATALOG = [
       { label: 'Healthy', color: '#1a9850' },
     ],
   },
+  {
+    id: 'coffee-zones',
+    name: 'Coffee Agro-Suitability',
+    description: 'Elevation + rainfall suitability for Robusta (Central/West) and Arabica (Eastern Highlands) — derived from SRTM DEM + CHIRPS',
+    source: 'USGS/SRTMGL1_003 + UCSB-CHG/CHIRPS/DAILY',
+    legend: [
+      { label: 'Not suitable', color: '#f7f7f7' },
+      { label: 'Marginal (Robusta)', color: '#c8e6c9' },
+      { label: 'Suitable (Robusta)', color: '#388e3c' },
+      { label: 'Suitable (Arabica)', color: '#1b5e20' },
+    ],
+  },
+  {
+    id: 'maize-zones',
+    name: 'Maize Production Zones',
+    description: 'Cropland areas with suitable rainfall (600–1400 mm) for maize — ESA WorldCover + CHIRPS',
+    source: 'ESA/WorldCover/v200 + UCSB-CHG/CHIRPS/DAILY',
+    legend: [
+      { label: 'Low potential', color: '#fff9c4' },
+      { label: 'Medium', color: '#f9a825' },
+      { label: 'High potential', color: '#e65100' },
+    ],
+  },
+  {
+    id: 'avocado-zones',
+    name: 'Hass Avocado Suitability',
+    description: 'Highland areas (1500–2200 m) with bimodal rainfall suitable for Hass avocado export production',
+    source: 'USGS/SRTMGL1_003 + UCSB-CHG/CHIRPS/DAILY',
+    legend: [
+      { label: 'Not suitable', color: '#f5f5f5' },
+      { label: 'Marginal', color: '#dcedc8' },
+      { label: 'Suitable', color: '#33691e' },
+    ],
+  },
+  {
+    id: 'soil-fertility',
+    name: 'Soil Organic Carbon',
+    description: 'SoilGrids topsoil organic carbon content — proxy for soil fertility across Uganda',
+    source: 'OpenLandMap/SOL/SOL_ORGANIC-CARBON_USDA-6A1C_M/v02_0',
+    legend: [
+      { label: 'Low (< 10 g/kg)', color: '#fff3e0' },
+      { label: 'Medium (10–30)', color: '#8d6e63' },
+      { label: 'High (> 30 g/kg)', color: '#3e2723' },
+    ],
+  },
 ];
 
 function buildLayerImage(layerId) {
@@ -116,6 +161,86 @@ function buildLayerImage(layerId) {
       return {
         image,
         vis: { min: 0.1, max: 0.8, palette: ['d73027', 'fee08b', '1a9850'] },
+      };
+    }
+    case 'coffee-zones': {
+      // Elevation mask: Robusta 900–1500 m, Arabica 1500–2300 m
+      const dem = ee.Image('USGS/SRTMGL1_003').select('elevation').clip(uganda);
+      const end = ee.Date(Date.now());
+      const start = end.advance(-1, 'year');
+      const rainfall = ee
+        .ImageCollection('UCSB-CHG/CHIRPS/DAILY')
+        .filterDate(start, end)
+        .select('precipitation')
+        .sum()
+        .clip(uganda);
+      // Robusta: 900–1500 m elevation, 1200–2000 mm rainfall
+      const robustaMask = dem.gte(900).and(dem.lte(1500))
+        .and(rainfall.gte(1200)).and(rainfall.lte(2000));
+      // Arabica: 1500–2300 m elevation, 1400–2000 mm rainfall
+      const arabicaMask = dem.gte(1500).and(dem.lte(2300))
+        .and(rainfall.gte(1400)).and(rainfall.lte(2000));
+      const image = ee.Image(0)
+        .where(robustaMask, 1)
+        .where(arabicaMask, 2)
+        .clip(uganda)
+        .rename('coffee_zone');
+      return {
+        image,
+        vis: { min: 0, max: 2, palette: ['f7f7f7', '388e3c', '1b5e20'] },
+      };
+    }
+    case 'maize-zones': {
+      const end = ee.Date(Date.now());
+      const start = end.advance(-1, 'year');
+      const rainfall = ee
+        .ImageCollection('UCSB-CHG/CHIRPS/DAILY')
+        .filterDate(start, end)
+        .select('precipitation')
+        .sum()
+        .clip(uganda);
+      const cropland = ee.Image('ESA/WorldCover/v200').select('Map').clip(uganda);
+      // Cropland class = 40 in ESA WorldCover
+      const cropMask = cropland.eq(40);
+      const image = rainfall.updateMask(cropMask).rename('maize_potential');
+      return {
+        image,
+        vis: { min: 600, max: 1400, palette: ['fff9c4', 'f9a825', 'e65100'] },
+      };
+    }
+    case 'avocado-zones': {
+      const dem = ee.Image('USGS/SRTMGL1_003').select('elevation').clip(uganda);
+      const end = ee.Date(Date.now());
+      const start = end.advance(-1, 'year');
+      const rainfall = ee
+        .ImageCollection('UCSB-CHG/CHIRPS/DAILY')
+        .filterDate(start, end)
+        .select('precipitation')
+        .sum()
+        .clip(uganda);
+      // Hass Avocado: 1500–2200 m, 800–1600 mm
+      const marginalMask = dem.gte(1200).and(dem.lt(1500))
+        .and(rainfall.gte(800)).and(rainfall.lte(1600));
+      const suitableMask = dem.gte(1500).and(dem.lte(2200))
+        .and(rainfall.gte(800)).and(rainfall.lte(1600));
+      const image = ee.Image(0)
+        .where(marginalMask, 1)
+        .where(suitableMask, 2)
+        .clip(uganda)
+        .rename('avocado_zone');
+      return {
+        image,
+        vis: { min: 0, max: 2, palette: ['f5f5f5', 'dcedc8', '33691e'] },
+      };
+    }
+    case 'soil-fertility': {
+      const image = ee
+        .Image('OpenLandMap/SOL/SOL_ORGANIC-CARBON_USDA-6A1C_M/v02_0')
+        .select('b0')
+        .clip(uganda);
+      return {
+        image,
+        vis: { min: 5, max: 50, palette: ['fff3e0', '8d6e63', '3e2723'] },
       };
     }
     default:

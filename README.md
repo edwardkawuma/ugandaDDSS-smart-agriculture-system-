@@ -1,152 +1,123 @@
-# AgriSmart Uganda
+# AgriSmart Uganda DDSS
 
-AgriSmart Uganda is an agricultural intelligence web platform for Uganda. It combines farmer advisories, district analytics, and **interactive geospatial mapping** powered by **Google Earth Engine (GEE)**, Leaflet, and local GeoJSON boundary data.
+**Digital Data-Driven Decision Support System (DDSS) for Climate-Smart Agriculture in Uganda**
 
-## Project description
+Developed for the Ministry of Agriculture, Animal Industry and Fisheries (MAAIF) in collaboration with NARO, UNMA, and UBOS.
 
-The platform supports multiple user roles (farmers, extension workers, researchers, MAAIF officials, and development partners) with dashboards for crop recommendations, pest alerts, weather data, production reports, and **public agricultural maps**.
+---
 
-Geospatial features are centered on Uganda's national boundary and district-level agricultural zones:
+## Color Palette
 
-- **Crop / land cover** — ESA WorldCover clipped to Uganda
-- **Soil texture** — OpenLandMap USDA soil classes
-- **Rainfall** — CHIRPS 12-month precipitation sum
-- **Vegetation health (NDVI)** — Sentinel-2 median NDVI
+| Role | Color | Hex |
+|------|-------|-----|
+| Primary | Forest Green | `#228B22` |
+| Secondary | Earth Brown | `#8B4513` |
+| Accent | Golden Yellow | `#FFD700` |
+| Background | Light Beige | `#F5F5DC` |
 
-Maps support **zoom**, **pan**, and **layer toggling**. Without GEE credentials the app runs in **demo mode** using district choropleths from local GeoJSON; with credentials it serves live Earth Engine raster tiles.
+---
 
-## Quick start (no README required to run)
+## Uganda Focus Crops
 
-From the project root:
+| Crop | Role | Key Zone | Data Source |
+|------|------|----------|-------------|
+| Coffee ☕ | Major export | SW Highlands / Mt Elgon | UCDA |
+| Maize 🌽 | Food security staple | Northern Savannah / Lake Victoria Crescent | MAAIF / UBOS |
+| Beans 🫘 | Nutrition / household income | SW Highlands / Eastern Highlands | MAAIF / UBOS |
+| Hass Avocado 🥑 | Emerging export | Western Highlands | MAAIF / UCDA |
 
-```bash
-npm run install:all   # first time only
-npm run dev           # starts frontend (8080) + GEE API (3001)
+---
+
+## System Roles
+
+| Role | Landing Page | Primary Function |
+|------|--------------|-----------------|
+| Farmer | Weather Alerts | Advisories, market prices, farm management |
+| Extension Worker | Farm Management | Farmer directory, field visits, advisory creation |
+| Researcher | Data Hub | AI models, statistical analysis, custom queries |
+| MAAIF Official | Policy Dashboard | National statistics, production reports, district maps |
+| Development Partner | Monitoring Dashboard | Impact assessment, programme KPIs, beneficiary tracking |
+| Public Visitor | Public Maps | Agricultural information, seasonal calendars |
+
+---
+
+## Architecture
+
+```
+agrismart-uganda/
+├── backend/                    Node.js + Express API
+│   ├── auth/                   JWT authentication
+│   ├── db/                     SQLite (offline) + PostgreSQL (online sync)
+│   ├── gee/                    Google Earth Engine (NDVI, rainfall, crop layers)
+│   ├── market/                 Uganda market prices (UCDA/UBOS/district)
+│   ├── serpapi/                Location search
+│   └── server.js
+├── frontend/                   React 18 + TypeScript + Tailwind
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── maps/           Leaflet + GEE Uganda layers
+│   │   │   └── UgandaPricePanel.tsx  UCDA/UBOS price widget
+│   │   ├── constants/
+│   │   │   └── Uganda.ts       Crops, districts, agro-zones, palette
+│   │   ├── lib/api/
+│   │   │   └── ugandaMarketService.ts  Live UCDA/UBOS endpoints
+│   │   └── pages/              30+ pages by role
+│   └── public/data/            Uganda boundary + districts GeoJSON
 ```
 
-Open **http://localhost:8080** in your browser.
+---
 
-| Script | Description |
-|--------|-------------|
-| `npm run dev` | Frontend + backend concurrently |
-| `npm run dev:frontend` | Vite dev server only |
-| `npm run dev:backend` | GEE API only |
-| `npm run build` | Production frontend build |
-| `npm run preview` | Preview production build |
+## GIS / Earth Engine Layers
 
-## Setup
+| Layer | Description | Data Source |
+|-------|-------------|-------------|
+| Crop / Land Cover | ESA WorldCover 2021 | ESA/WorldCover/v200 |
+| Soil Texture | USDA classification at 250 m | OpenLandMap |
+| Annual Rainfall | CHIRPS 12-month sum | UCSB-CHG/CHIRPS/DAILY |
+| Vegetation (NDVI) | Sentinel-2 median NDVI | COPERNICUS/S2_SR_HARMONIZED |
+| Coffee Suitability | Robusta + Arabica zones | SRTM + CHIRPS |
+| Maize Zones | Rainfall-suitable cropland | ESA WorldCover + CHIRPS |
+| Hass Avocado Suitability | Highland areas 1500–2200 m | SRTM + CHIRPS |
+| Soil Organic Carbon | Topsoil fertility proxy | SoilGrids / OpenLandMap |
 
-### Prerequisites
+---
 
-- **Node.js** 18+ and npm
-- (Optional) **Google Cloud project** with Earth Engine enabled and a service account JSON key
+## Market Price APIs
 
-### Frontend
+| Endpoint | Description |
+|----------|-------------|
+| `GET /api/market-prices` | Current prices (all sources) |
+| `GET /api/market-prices/trends` | 30/60/90-day price history |
+| `GET /api/market-prices/ucda` | UCDA coffee export bulletin |
+| `GET /api/market-prices/ubos` | UBOS national commodity statistics |
+| `GET /api/market-prices/districts` | District-level price map data |
+
+---
+
+## Quick Start
 
 ```bash
+# Backend
+cd backend
+cp .env.example .env    # fill in DATABASE_URL, GEE credentials, SERPAPI_KEY
+npm install
+npm run dev
+
+# Frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-Environment (optional):
+Demo credentials (mock mode): `farmer@demo.com` / `Demo@1234`
 
-| Variable | Default | Purpose |
-|----------|---------|---------|
-| `VITE_GEE_API_URL` | `/api/gee` (proxied in dev) | GEE REST API base URL |
+---
 
-### Backend (Google Earth Engine API)
+## Data Sources
 
-```bash
-cd backend
-cp .env.example .env
-npm install
-npm run dev
-```
-
-Configure `.env`:
-
-```env
-PORT=3001
-GEE_PROJECT_ID=your-google-cloud-project-id
-GOOGLE_APPLICATION_CREDENTIALS=./gee-service-account.json
-```
-
-**Live GEE mode** requires:
-
-1. Earth Engine access approved for your Google account / project  
-2. A service account key with Earth Engine API scope  
-3. `GOOGLE_APPLICATION_CREDENTIALS` pointing to that JSON file  
-
-If credentials are missing, the API returns **demo mode** and the frontend renders local district layers.
-
-## Usage guide
-
-### Public agricultural map
-
-1. Start the app with `npm run dev`
-2. Visit **http://localhost:8080/public-maps**
-3. Use the **Map Layers** panel to toggle Earth Engine layers
-4. Zoom and pan the Leaflet map; Uganda's boundary is loaded from `frontend/public/data/uganda-boundary.geojson`
-
-### District maps (authenticated)
-
-1. Log in as a MAAIF official (mock auth is enabled by default)
-2. Open **District Maps** from the dashboard
-3. Use the **Map View** tab for the full GEE-integrated map
-
-### GEE API endpoints
-
-| Endpoint | Description |
-|----------|-------------|
-| `GET /health` | Service health check |
-| `GET /api/gee/status` | GEE connection status (`gee` or `demo`) |
-| `GET /api/gee/layers` | Available agricultural layer catalog |
-| `GET /api/gee/tiles/:layerId` | Map ID + token for raster tiles |
-
-## Geospatial architecture
-
-```
-frontend/
-├── public/data/
-│   ├── uganda-boundary.geojson      # National boundary
-│   └── uganda-districts.geojson     # Demo district polygons
-├── src/components/maps/
-│   ├── AgriculturalMap.tsx          # Main interactive map
-│   ├── MapLayerControlPanel.tsx     # Layer toggles + legend
-│   ├── GeeLayers.tsx                # GEE tiles + demo choropleth
-│   └── UgandaBoundaryLayer.tsx      # Boundary overlay
-└── src/lib/geospatial/
-    ├── constants.ts                 # Map center, bounds, API URL
-    ├── types.ts                     # Layer types + demo palettes
-    └── earthEngineClient.ts         # GEE REST client
-
-backend/
-├── server.js                        # Express entry
-└── gee/
-    ├── initialize.js                # Earth Engine auth
-    ├── layers.js                    # Layer definitions + map IDs
-    └── routes.js                    # REST routes
-```
-
-### Extending layers
-
-1. Add a layer definition in `backend/gee/layers.js` (`LAYER_CATALOG` + `buildLayerImage`)
-2. Extend `GeeLayerId` and demo palette in `frontend/src/lib/geospatial/types.ts`
-3. The UI picks up new layers automatically via `GET /api/gee/layers`
-
-## Contribution notes
-
-- Follow existing React + TypeScript + shadcn/ui patterns in `frontend/src`
-- Keep geospatial logic in `src/lib/geospatial/` and map UI in `src/components/maps/`
-- Run `npm run lint` in `frontend` before submitting changes
-- Do **not** commit service account keys or `.env` files with secrets
-- For new agricultural datasets, prefer GEE public catalogs and clip to Uganda using `USDOS/LSIB_SIMPLE/2017`
-
-### Mock API
-
-The frontend uses a mock HTTP adapter (`installMockAdapter`) so the app runs without a full backend API. Only the GEE microservice on port **3001** is required for live raster layers.
-
-## License
-
-Private / educational use — see repository owner for terms.
+- **MAAIF** — Ministry of Agriculture, Animal Industry and Fisheries
+- **NARO** — National Agricultural Research Organisation
+- **UNMA** — Uganda National Meteorological Authority
+- **UBOS** — Uganda Bureau of Statistics
+- **UCDA** — Uganda Coffee Development Authority
+- **Google Earth Engine** — Satellite imagery and geospatial analysis

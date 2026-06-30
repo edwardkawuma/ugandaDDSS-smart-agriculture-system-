@@ -65,43 +65,43 @@
     "crops": [
       {
         "id": "c3a3a1fa-fa0c-4948-8046-5cb1aebaffff",
-        "name": "Ishaan Khan",
-        "description": "Run through the checklist before requesting peer review.",
-        "season": "Investigate the reported",
-        "agro_ecological_zones": null,
-        "image_url": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=640&h=400&q=80"
+        "name": "Coffee (Robusta)",
+        "description": "Uganda's leading export crop, grown mainly in the Highlands and Lake Victoria crescent. Robusta thrives in humid lowland zones at 1,000–1,500 m elevation.",
+        "season": "Biannual — main harvest Oct–Feb, fly crop May–Aug",
+        "agro_ecological_zones": ["Lake Victoria Crescent", "South-Western Highlands", "Rwenzori"],
+        "image_url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=640&h=400&q=80"
       },
       {
         "id": "e170a46b-1932-4d9b-8041-c36584ddffff",
-        "name": "Ira Joshi",
-        "description": "Investigate the reported edge case and document the reproduction steps.",
-        "season": "Pair with the",
-        "agro_ecological_zones": null,
-        "image_url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=640&h=400&q=80"
+        "name": "Maize",
+        "description": "The most widely grown staple in Uganda, cultivated across all agro-ecological zones. A core food-security and income crop for smallholder farmers.",
+        "season": "Biannual — Season I (Mar–Jul), Season II (Aug–Dec)",
+        "agro_ecological_zones": ["South-Western Highlands", "Eastern Plateau", "Northern Drylands"],
+        "image_url": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=640&h=400&q=80"
       },
       {
         "id": "45a1eef3-af1c-4416-8040-56892216ffff",
-        "name": "Liam Patel",
-        "description": "Investigate the reported edge case and document the reproduction steps.",
-        "season": "Capture decisions in",
-        "agro_ecological_zones": null,
-        "image_url": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=640&h=400&q=80"
+        "name": "Beans",
+        "description": "A critical protein source and cash crop for millions of Ugandan households. Common bean varieties include K132, NABE 15, and climbing beans for highland zones.",
+        "season": "Biannual — Season I (Mar–Jun), Season II (Sep–Dec)",
+        "agro_ecological_zones": ["South-Western Highlands", "Lake Victoria Crescent", "Mount Elgon"],
+        "image_url": "https://images.unsplash.com/photo-1585664811087-47f65abbad64?auto=format&fit=crop&w=640&h=400&q=80"
       },
       {
         "id": "c8658166-3ad1-445c-a043-47c2589dffff",
-        "name": "Krishna Mehta",
-        "description": "Coordinate with stakeholders to align on priorities for the upcoming quarter.",
-        "season": "Run through the",
-        "agro_ecological_zones": null,
-        "image_url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=640&h=400&q=80"
+        "name": "Bananas (Matooke)",
+        "description": "Uganda is Africa's largest banana producer. Matooke (East African Highland Banana) is both the staple food and a major cash crop, especially in the Buganda and Western regions.",
+        "season": "Year-round harvest — 9–12 months from planting",
+        "agro_ecological_zones": ["Lake Victoria Crescent", "South-Western Highlands", "Buganda"],
+        "image_url": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=640&h=400&q=80"
       },
       {
         "id": "023ad8a7-758a-47af-9042-724e8245ffff",
-        "name": "Elijah Rao",
-        "description": "Capture decisions in the shared workspace so the team has a single source of truth.",
-        "season": "Run through the",
-        "agro_ecological_zones": null,
-        "image_url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=640&h=400&q=80"
+        "name": "Cassava",
+        "description": "A drought-tolerant food security crop grown across northern and eastern Uganda. Improved varieties like NASE 14 offer high yield and resistance to Cassava Brown Streak Disease.",
+        "season": "Planted at onset of rains — harvested 9–18 months later",
+        "agro_ecological_zones": ["Northern Drylands", "Eastern Plateau", "West Nile"],
+        "image_url": "https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=640&h=400&q=80"
       }
     ],
     "farmers": [
@@ -2099,6 +2099,34 @@
         "condition": "Run through the",
         "id": "b7a64db9-75a3-4003-90c6-a9124210ffff"
       }
+    ],
+    "crop_monitoring__sensors": [
+      { "id": "sensor-001-ffff", "farm_id": "farm-001", "district": "Mukono", "crop": "Coffee (Robusta)", "timestamp": "2026-06-29T08:00:00Z", "soil_moisture": 62, "soil_ph": 6.1, "soil_temperature": 22.4, "air_temperature": 26.8, "humidity": 74, "rainfall": 4.2, "solar_radiation": 320, "sensor_status": "online" },
+      { "id": "sensor-002-ffff", "farm_id": "farm-002", "district": "Mbarara", "crop": "Maize", "timestamp": "2026-06-29T08:00:00Z", "soil_moisture": 48, "soil_ph": 5.8, "soil_temperature": 24.1, "air_temperature": 28.5, "humidity": 65, "rainfall": 0, "solar_radiation": 480, "sensor_status": "warning" },
+      { "id": "sensor-003-ffff", "farm_id": "farm-003", "district": "Kabale", "crop": "Beans", "timestamp": "2026-06-29T08:00:00Z", "soil_moisture": 71, "soil_ph": 6.4, "soil_temperature": 18.9, "air_temperature": 21.3, "humidity": 82, "rainfall": 12.6, "solar_radiation": 210, "sensor_status": "online" },
+      { "id": "sensor-004-ffff", "farm_id": "farm-004", "district": "Masindi", "crop": "Bananas (Matooke)", "timestamp": "2026-06-29T08:00:00Z", "soil_moisture": 78, "soil_ph": 6.8, "soil_temperature": 23.6, "air_temperature": 27.1, "humidity": 88, "rainfall": 18.3, "solar_radiation": 195, "sensor_status": "online" },
+      { "id": "sensor-005-ffff", "farm_id": "farm-005", "district": "Gulu", "crop": "Cassava", "timestamp": "2026-06-29T08:00:00Z", "soil_moisture": 34, "soil_ph": 5.5, "soil_temperature": 29.2, "air_temperature": 33.4, "humidity": 52, "rainfall": 0, "solar_radiation": 620, "sensor_status": "offline" }
+    ],
+    "crop_monitoring__uav_scans": [
+      { "id": "uav-001-ffff", "farm_id": "farm-001", "district": "Mukono", "crop": "Coffee (Robusta)", "scan_date": "2026-06-25", "altitude_m": 80, "resolution_cm": 2, "canopy_cover": 84, "disease_detected": true, "disease_type": "Coffee Leaf Rust", "disease_confidence": 0.87, "plant_count": 1240, "stressed_plants": 186, "ndvi_mean": 0.61, "thumbnail_url": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=400&q=70", "status": "complete" },
+      { "id": "uav-002-ffff", "farm_id": "farm-002", "district": "Mbarara", "crop": "Maize", "scan_date": "2026-06-24", "altitude_m": 100, "resolution_cm": 3, "canopy_cover": 72, "disease_detected": true, "disease_type": "Fall Armyworm", "disease_confidence": 0.93, "plant_count": 3400, "stressed_plants": 510, "ndvi_mean": 0.54, "thumbnail_url": "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=400&q=70", "status": "complete" },
+      { "id": "uav-003-ffff", "farm_id": "farm-003", "district": "Kabale", "crop": "Beans", "scan_date": "2026-06-26", "altitude_m": 60, "resolution_cm": 2, "canopy_cover": 91, "disease_detected": false, "disease_type": null, "disease_confidence": 0, "plant_count": 5200, "stressed_plants": 104, "ndvi_mean": 0.74, "thumbnail_url": "https://images.unsplash.com/photo-1585664811087-47f65abbad64?auto=format&fit=crop&w=400&q=70", "status": "complete" },
+      { "id": "uav-004-ffff", "farm_id": "farm-004", "district": "Masindi", "crop": "Bananas (Matooke)", "scan_date": "2026-06-27", "altitude_m": 70, "resolution_cm": 2, "canopy_cover": 96, "disease_detected": true, "disease_type": "Banana Xanthomonas Wilt", "disease_confidence": 0.71, "plant_count": 680, "stressed_plants": 82, "ndvi_mean": 0.68, "thumbnail_url": "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=400&q=70", "status": "complete" },
+      { "id": "uav-005-ffff", "farm_id": "farm-005", "district": "Gulu", "crop": "Cassava", "scan_date": "2026-06-23", "altitude_m": 90, "resolution_cm": 3, "canopy_cover": 58, "disease_detected": true, "disease_type": "Cassava Brown Streak Virus", "disease_confidence": 0.82, "plant_count": 2100, "stressed_plants": 630, "ndvi_mean": 0.43, "thumbnail_url": "https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=400&q=70", "status": "complete" }
+    ],
+    "crop_monitoring__timeseries_alerts": [
+      { "id": "tsa-001-ffff", "type": "disease", "severity": "High", "crop": "Coffee (Robusta)", "district": "Mukono", "detected_at": "2026-06-25T10:30:00Z", "description": "NDVI changepoint detected. 15% canopy decline over 3 weeks correlated with Coffee Leaf Rust spread pattern.", "changepoint_index": 18, "recommended_action": "Apply copper-based fungicide immediately. Increase UAV monitoring to bi-weekly." },
+      { "id": "tsa-002-ffff", "type": "pest_outbreak", "severity": "Critical", "crop": "Maize", "district": "Mbarara", "detected_at": "2026-06-24T07:15:00Z", "description": "Mann-Kendall trend analysis shows statistically significant NDVI decline (p<0.01). Fall Armyworm infestation confirmed in 15% of surveyed area.", "changepoint_index": 12, "recommended_action": "Deploy pheromone traps. Apply approved insecticide within 48 hours. Alert neighbouring farms." },
+      { "id": "tsa-003-ffff", "type": "drought", "severity": "Medium", "crop": "Cassava", "district": "Gulu", "detected_at": "2026-06-20T14:00:00Z", "description": "Soil moisture sensor readings dropped below 35% threshold for 9 consecutive days. EVI index declining.", "changepoint_index": 8, "recommended_action": "Activate supplemental irrigation if available. Apply mulching to conserve soil moisture." },
+      { "id": "tsa-004-ffff", "type": "disease", "severity": "Medium", "crop": "Bananas (Matooke)", "district": "Masindi", "detected_at": "2026-06-27T09:45:00Z", "description": "Spectral anomaly in UAV imagery. Xanthomonas Wilt signature detected in 12% of plantation with upward trend.", "changepoint_index": 6, "recommended_action": "Immediately rogue affected mats. Disinfect tools. Notify district agricultural officer." },
+      { "id": "tsa-005-ffff", "type": "anomaly", "severity": "Low", "crop": "Beans", "district": "Kabale", "detected_at": "2026-06-26T16:20:00Z", "description": "Minor deviation from seasonal NDVI baseline detected. Likely heavy cloud cover affecting Sentinel-2 readings.", "changepoint_index": 2, "recommended_action": "Re-acquire cloud-free imagery in 5 days to confirm crop health status." }
+    ],
+    "crop_monitoring__health_summary": [
+      { "id": "hs-001-ffff", "crop": "Coffee (Robusta)", "district": "Mukono", "health_score": 62, "ndvi_current": 0.61, "ndvi_trend": "declining", "stress_index": 0.38, "phenology_stage": "Berry Development", "days_to_harvest": 68, "active_alerts": 1, "last_updated": "2026-06-29T08:00:00Z" },
+      { "id": "hs-002-ffff", "crop": "Maize", "district": "Mbarara", "health_score": 54, "ndvi_current": 0.54, "ndvi_trend": "declining", "stress_index": 0.46, "phenology_stage": "Tasseling", "days_to_harvest": 42, "active_alerts": 1, "last_updated": "2026-06-29T08:00:00Z" },
+      { "id": "hs-003-ffff", "crop": "Beans", "district": "Kabale", "health_score": 88, "ndvi_current": 0.74, "ndvi_trend": "stable", "stress_index": 0.12, "phenology_stage": "Pod Filling", "days_to_harvest": 28, "active_alerts": 0, "last_updated": "2026-06-29T08:00:00Z" },
+      { "id": "hs-004-ffff", "crop": "Bananas (Matooke)", "district": "Masindi", "health_score": 71, "ndvi_current": 0.68, "ndvi_trend": "stable", "stress_index": 0.29, "phenology_stage": "Bunch Filling", "days_to_harvest": 55, "active_alerts": 1, "last_updated": "2026-06-29T08:00:00Z" },
+      { "id": "hs-005-ffff", "crop": "Cassava", "district": "Gulu", "health_score": 41, "ndvi_current": 0.43, "ndvi_trend": "declining", "stress_index": 0.59, "phenology_stage": "Tuber Bulking", "days_to_harvest": 180, "active_alerts": 1, "last_updated": "2026-06-29T08:00:00Z" }
     ],
     "alerts__active": [
       {
@@ -5382,6 +5410,51 @@
       "fileName": "post_export_schedule.json",
       "pathTemplate": "/weather/export-schedule",
       "pathParams": []
+    },
+    "GET /crop-monitoring/sensors": {
+      "entity": "crop_monitoring__sensors",
+      "storeKey": "crop_monitoring__sensors",
+      "action": "list",
+      "responseShape": { "message": "string", "data": [], "total": "number", "page": "number", "limit": "number", "totalPages": "number" },
+      "fileName": "get_sensors.json",
+      "pathTemplate": "/crop-monitoring/sensors",
+      "pathParams": []
+    },
+    "GET /crop-monitoring/ndvi-series": {
+      "entity": "crop_monitoring__health_summary",
+      "storeKey": "crop_monitoring__health_summary",
+      "action": "list",
+      "responseShape": { "message": "string", "data": [], "total": "number", "page": "number", "limit": "number", "totalPages": "number" },
+      "fileName": "get_ndvi_series.json",
+      "pathTemplate": "/crop-monitoring/ndvi-series",
+      "pathParams": []
+    },
+    "GET /crop-monitoring/uav-scans": {
+      "entity": "crop_monitoring__uav_scans",
+      "storeKey": "crop_monitoring__uav_scans",
+      "action": "list",
+      "responseShape": { "message": "string", "data": [], "total": "number", "page": "number", "limit": "number", "totalPages": "number" },
+      "fileName": "get_uav_scans.json",
+      "pathTemplate": "/crop-monitoring/uav-scans",
+      "pathParams": []
+    },
+    "GET /crop-monitoring/timeseries-alerts": {
+      "entity": "crop_monitoring__timeseries_alerts",
+      "storeKey": "crop_monitoring__timeseries_alerts",
+      "action": "list",
+      "responseShape": { "message": "string", "data": [], "total": "number", "page": "number", "limit": "number", "totalPages": "number" },
+      "fileName": "get_timeseries_alerts.json",
+      "pathTemplate": "/crop-monitoring/timeseries-alerts",
+      "pathParams": []
+    },
+    "GET /crop-monitoring/health-summary": {
+      "entity": "crop_monitoring__health_summary",
+      "storeKey": "crop_monitoring__health_summary",
+      "action": "list",
+      "responseShape": { "message": "string", "data": [], "total": "number", "page": "number", "limit": "number", "totalPages": "number" },
+      "fileName": "get_health_summary.json",
+      "pathTemplate": "/crop-monitoring/health-summary",
+      "pathParams": []
     }
   },
   "searchFields": {
@@ -5704,6 +5777,10 @@
     "impact__assessment": "assessment_id",
     "impact__baseline": "baseline_id",
     "impact__beneficiary": "beneficiary_id",
-    "monitoring__programmes": "programmes_id"
+    "monitoring__programmes": "programmes_id",
+    "crop_monitoring__sensors": "id",
+    "crop_monitoring__uav_scans": "id",
+    "crop_monitoring__timeseries_alerts": "id",
+    "crop_monitoring__health_summary": "id"
   }
 }

@@ -19,6 +19,7 @@ import AIModels from '@/pages/AIModels';
 import AlertsReports from '@/pages/AlertsReports';
 import BeneficiaryDetail from '@/pages/BeneficiaryDetail';
 import BeneficiaryTracking from '@/pages/BeneficiaryTracking';
+import CropMonitoring from '@/pages/CropMonitoring';
 import CropRecommendations from '@/pages/CropRecommendations';
 import CustomQueries from '@/pages/CustomQueries';
 import DataHub from '@/pages/DataHub';
@@ -128,6 +129,7 @@ const App = () => (
                     <Route path='weather-alerts' element={<ProtectedRoute requiredPermission='farmer'><WeatherAlerts /></ProtectedRoute>} />
                     <Route path='pest-disease-warnings' element={<ProtectedRoute requiredPermission='farmer'><PestDiseaseWarnings /></ProtectedRoute>} />
                     <Route path='crop-recommendations' element={<ProtectedRoute requiredPermission='farmer'><CropRecommendations /></ProtectedRoute>} />
+                    <Route path='crop-monitoring' element={<ProtectedRoute requiredPermission='farmer,extension worker,researcher,maaif official'><CropMonitoring /></ProtectedRoute>} />
                     <Route path='my-farm' element={<ProtectedRoute requiredPermission='farmer'><MyFarm /></ProtectedRoute>} />
                     <Route path='market-prices' element={<ProtectedRoute requiredPermission='farmer'><MarketPrices /></ProtectedRoute>} />
                     <Route path='farmer-directory/:id' element={<ProtectedRoute requiredPermission='extension worker'><FarmerProfile /></ProtectedRoute>} />

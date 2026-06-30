@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
-export type Theme = 'classic' | 'minimal' | 'vibrant' | 'elegant' | 'modern' | 'warm' | 'cool' | 'soft' | 'bold' | 'gentle' | 'crisp' | 'smooth' | 'fresh' | 'cozy' | 'bright' | 'calm' | 'energetic' | 'serene' | 'dynamic' | 'peaceful';
+export type Theme = 'uganda-agri' | 'classic' | 'minimal' | 'vibrant' | 'elegant' | 'modern' | 'warm' | 'cool' | 'soft' | 'bold' | 'gentle' | 'crisp' | 'smooth' | 'fresh' | 'cozy' | 'bright' | 'calm' | 'energetic' | 'serene' | 'dynamic' | 'peaceful';
 
 interface ThemeContextType {
   theme: Theme;
@@ -14,6 +14,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const themes = [
+  { value: 'uganda-agri' as Theme, label: 'Uganda Agricultural', description: 'Forest green, earth brown & golden yellow', category: 'light' as const },
   { value: 'classic' as Theme, label: 'Classic Professional', description: 'Timeless and reliable', category: 'light' as const },
   { value: 'minimal' as Theme, label: 'Minimal Clean', description: 'Simple and focused', category: 'light' as const },
   { value: 'vibrant' as Theme, label: 'Vibrant Energy', description: 'Bold and exciting', category: 'light' as const },
@@ -47,7 +48,7 @@ interface ThemeProviderProps {
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>(() => {
     const saved = localStorage.getItem('dashboard-theme');
-    return isTheme(saved) ? saved : 'smooth';
+    return isTheme(saved) ? saved : 'uganda-agri';
   });
 
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>(() => {

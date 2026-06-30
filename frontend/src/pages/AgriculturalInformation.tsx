@@ -140,12 +140,13 @@ export default function AgriculturalInformation() {
         return Math.max(1, Math.ceil(total / limit));
     }
 
-    // Unsplash images for the four priority crops
+    // Unsplash images for Uganda's cornerstone crops
     const cropImages: Record<string, string> = {
-        coffee: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80',
-        maize: 'https://images.unsplash.com/photo-1602867741746-6df80f40b3f6?auto=format&fit=crop&w=800&q=80',
-        beans: 'https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=800&q=80',
-        avocado: 'https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?auto=format&fit=crop&w=800&q=80',
+        coffee: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80',
+        maize: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80',
+        beans: 'https://images.unsplash.com/photo-1585664811087-47f65abbad64?auto=format&fit=crop&w=800&q=80',
+        banana: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=800&q=80',
+        cassava: 'https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=800&q=80',
     };
 
     function getCropImage(name: string): string {
@@ -153,8 +154,9 @@ export default function AgriculturalInformation() {
         if (lower.includes('coffee')) return cropImages.coffee;
         if (lower.includes('maize')) return cropImages.maize;
         if (lower.includes('bean')) return cropImages.beans;
-        if (lower.includes('avocado')) return cropImages.avocado;
-        return cropImages.coffee;
+        if (lower.includes('banana') || lower.includes('matooke')) return cropImages.banana;
+        if (lower.includes('cassava')) return cropImages.cassava;
+        return cropImages.maize;
     }
 
     // Unique crop names from data for filter dropdowns
@@ -223,8 +225,8 @@ export default function AgriculturalInformation() {
                     </div>
                     <div className="relative min-h-[260px] md:min-h-[360px]">
                         <img
-                            src="https://images.unsplash.com/photo-1592878904946-b3cd8ae243d0?auto=format&fit=crop&w=1200&q=80"
-                            alt="Coffee plantation in Uganda"
+                            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80"
+                            alt="Lush green agricultural farmland in Uganda"
                             loading="lazy"
                             className="absolute inset-0 h-full w-full object-cover"
                         />

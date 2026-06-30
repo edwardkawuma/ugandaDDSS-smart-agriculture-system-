@@ -17,37 +17,38 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ─── Light Theme — Teal Energetic (Spotify / Figma feel) ─── */
+    /* ─── Light Theme — Uganda Agricultural (Forest Green / Earth Brown / Golden) ─── */
 
-    /* Page canvas */
-    --background: 30 15% 97%;
-    --foreground: 30 25% 8%;
+    /* Page canvas — light beige (#F5F5DC → HSL 60 56% 91%) */
+    --background: 60 56% 91%;
+    --foreground: 25 60% 12%;
 
-    /* Cards & panels */
+    /* Cards & panels — warm white */
     --card: 0 0% 100%;
-    --card-foreground: 30 25% 8%;
+    --card-foreground: 25 60% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 30 25% 8%;
+    --popover-foreground: 25 60% 12%;
 
-    /* Primary: vibrant teal */
-    --primary: 25 95% 50%;
+    /* Primary: forest green (#228B22 → HSL 120 61% 34%) */
+    --primary: 120 61% 34%;
     --primary-foreground: 0 0% 100%;
+    --primary-rgb: 34 139 34;
 
-    /* Secondary */
-    --secondary: 30 14% 93%;
-    --secondary-foreground: 30 25% 8%;
+    /* Secondary: earth brown (#8B4513 → HSL 25 75% 31%) */
+    --secondary: 25 75% 31%;
+    --secondary-foreground: 0 0% 100%;
 
     /* Muted */
-    --muted: 30 14% 92%;
-    --muted-foreground: 30 10% 44%;
+    --muted: 60 20% 88%;
+    --muted-foreground: 25 20% 40%;
 
-    /* Accent */
-    --accent: 195 55% 90%;
-    --accent-foreground: 30 25% 8%;
+    /* Accent: golden yellow (#FFD700 → HSL 51 100% 50%) */
+    --accent: 51 100% 50%;
+    --accent-foreground: 25 60% 12%;
 
     /* ── Status Colors ── */
-    --success: 142 72% 42%;
+    --success: 120 61% 34%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
@@ -55,36 +56,36 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
     --teal: 168 80% 38%;
     --teal-foreground: 0 0% 100%;
-    --amber: 38 92% 50%;
-    --amber-foreground: 0 0% 100%;
+    --amber: 51 100% 50%;
+    --amber-foreground: 25 60% 12%;
 
     /* ── Semantic Aliases (status colors used by components) ── */
     --info: 200 85% 50%;
     --info-foreground: 0 0% 100%;
     --purple: 280 65% 58%;
     --purple-foreground: 0 0% 100%;
-    --neutral: 170 8% 48%;
+    --neutral: 25 20% 50%;
     --neutral-foreground: 0 0% 100%;
 
     /* Borders and Inputs */
-    --border: 30 12% 88%;
-    --input: 30 12% 88%;
-    --ring: 25 95% 50%;
+    --border: 25 15% 80%;
+    --input: 25 15% 80%;
+    --ring: 120 61% 34%;
 
     /* Border Radius */
     --radius: 0.25rem;
 
     /* Auth Page */
-    --auth-bg: 170 15% 96%;
+    --auth-bg: 60 40% 93%;
     --auth-card-bg: 0 0% 100%;
-    --auth-panel-bg: 180 22% 8%;
-    --auth-panel-card: 180 20% 13%;
+    --auth-panel-bg: 120 61% 8%;
+    --auth-panel-card: 120 50% 12%;
     --auth-panel-fg: 0 0% 100%;
     --auth-panel-muted: 0 0% 100% / 0.4;
 
-    /* Gradient used by Storage / featured cards */
-    --gradient-blue-start: 168 80% 25%;
-    --gradient-blue-end: 200 85% 50%;
+    /* Gradient used by Storage / featured cards — green to golden */
+    --gradient-blue-start: 120 61% 20%;
+    --gradient-blue-end: 51 100% 45%;
 
     /* ── Animation Tokens ── */
     --animation-duration-fast: 150ms;
@@ -113,31 +114,34 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* ─── Dark Theme — Teal Energetic ─── */
+    /* ─── Dark Theme — Uganda Agricultural (deep forest) ─── */
 
-    --background: 30 25% 5%;
-    --foreground: 30 12% 93%;
+    --background: 120 25% 6%;
+    --foreground: 60 30% 92%;
 
-    --card: 30 22% 9%;
-    --card-foreground: 30 12% 93%;
+    --card: 120 20% 10%;
+    --card-foreground: 60 30% 92%;
 
-    --popover: 30 22% 9%;
-    --popover-foreground: 30 12% 93%;
+    --popover: 120 20% 10%;
+    --popover-foreground: 60 30% 92%;
 
-    /* Primary: brighter teal for dark backgrounds */
-    --primary: 25 95% 55%;
+    /* Primary: lighter forest green for dark backgrounds */
+    --primary: 120 55% 48%;
     --primary-foreground: 0 0% 100%;
+    --primary-rgb: 61 171 61;
 
-    --secondary: 30 18% 14%;
-    --secondary-foreground: 30 12% 93%;
+    /* Secondary: muted earth brown */
+    --secondary: 25 50% 20%;
+    --secondary-foreground: 60 30% 92%;
 
-    --muted: 30 18% 14%;
-    --muted-foreground: 30 10% 50%;
+    --muted: 25 30% 16%;
+    --muted-foreground: 25 15% 55%;
 
-    --accent: 195 42% 18%;
-    --accent-foreground: 30 12% 93%;
+    /* Accent: muted golden for dark */
+    --accent: 51 80% 42%;
+    --accent-foreground: 0 0% 100%;
 
-    --success: 142 72% 50%;
+    --success: 120 55% 48%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 55%;
     --warning-foreground: 0 0% 100%;
@@ -145,29 +149,29 @@ All colors MUST be HSL.
     --destructive-foreground: 0 0% 100%;
     --teal: 168 80% 45%;
     --teal-foreground: 0 0% 100%;
-    --amber: 38 92% 55%;
-    --amber-foreground: 0 0% 100%;
+    --amber: 51 80% 50%;
+    --amber-foreground: 0 0% 5%;
 
     --info: 200 85% 56%;
     --info-foreground: 0 0% 100%;
     --purple: 280 65% 65%;
     --purple-foreground: 0 0% 5%;
-    --neutral: 170 8% 56%;
+    --neutral: 25 15% 56%;
     --neutral-foreground: 0 0% 100%;
 
-    --border: 30 18% 16%;
-    --input: 30 18% 16%;
-    --ring: 25 95% 55%;
+    --border: 120 20% 18%;
+    --input: 120 20% 18%;
+    --ring: 120 55% 48%;
 
-    --auth-bg: 180 22% 5%;
-    --auth-card-bg: 180 20% 9%;
-    --auth-panel-bg: 180 22% 7%;
-    --auth-panel-card: 180 20% 12%;
+    --auth-bg: 120 25% 5%;
+    --auth-card-bg: 120 20% 9%;
+    --auth-panel-bg: 120 25% 6%;
+    --auth-panel-card: 120 20% 11%;
     --auth-panel-fg: 0 0% 100%;
     --auth-panel-muted: 0 0% 100% / 0.4;
 
-    --gradient-blue-start: 168 80% 20%;
-    --gradient-blue-end: 200 85% 45%;
+    --gradient-blue-start: 120 55% 18%;
+    --gradient-blue-end: 51 80% 42%;
 
     /* Dark-mode shadow overrides */
     --shadow-sm: 0 2px 4px 0 rgb(0 0 0 / 0.22);
