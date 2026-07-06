@@ -44,6 +44,7 @@ import PublicMaps from '@/pages/PublicMaps';
 import PublicReports from '@/pages/PublicReports';
 import ResearchOutputDetail from '@/pages/ResearchOutputDetail';
 import ResearchOutputs from '@/pages/ResearchOutputs';
+import SentinelMapDashboard from '@/pages/SentinelMapDashboard';
 import SeasonalCalendars from '@/pages/SeasonalCalendars';
 import Settings from '@/pages/Settings';
 import StatisticalAnalysis from '@/pages/StatisticalAnalysis';
@@ -120,6 +121,7 @@ const App = () => (
                     <Route path='production-reports' element={<ProtectedRoute requiredPermission='maaif official'><ProductionReports /></ProtectedRoute>} />
                     <Route path='pest-disease-reports' element={<ProtectedRoute requiredPermission='maaif official'><PestDiseaseReports /></ProtectedRoute>} />
                     <Route path='district-maps' element={<ProtectedRoute requiredPermission='maaif official'><DistrictMaps /></ProtectedRoute>} />
+                    <Route path='sentinel-map' element={<ProtectedRoute requiredPermission='farmer,extension worker,researcher,maaif official,development partner'><SentinelMapDashboard /></ProtectedRoute>} />
                     <Route path='monitoring-dashboard' element={<ProtectedRoute requiredPermission='development partner'><MonitoringDashboard /></ProtectedRoute>} />
                     <Route path='impact-assessment' element={<ProtectedRoute requiredPermission='development partner'><ImpactAssessment /></ProtectedRoute>} />
                     <Route path='programme-kpis' element={<ProtectedRoute requiredPermission='development partner'><ProgrammeKPIs /></ProtectedRoute>} />

@@ -27,29 +27,25 @@ const CROPS = [
     name: 'Coffee',
     tagline: 'Arabica & Robusta value chains',
     note: 'Disease surveillance, rainfall advisories, and price tracking for Uganda\'s #1 export crop.',
-    image:
-      'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80',
   },
   {
     name: 'Maize',
     tagline: 'Staple food security',
     note: 'Fall armyworm alerts, planting-window forecasts, and yield projections by district.',
-    image:
-      'https://images.unsplash.com/photo-1602867741746-6df80f40b3f6?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=1200&q=80',
   },
   {
     name: 'Beans',
     tagline: 'Nutrition & income',
     note: 'Anthracnose and bean fly advisories tuned to the bimodal rainfall pattern.',
-    image:
-      'https://images.unsplash.com/photo-1597362925123-77861d3fbac7?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1200&q=80',
   },
   {
     name: 'Hass Avocado',
     tagline: 'Emerging export crop',
     note: 'Market linkage, post-harvest guidance, and orchard suitability mapping.',
-    image:
-      'https://images.unsplash.com/photo-1519162808019-7de1683fa2ad?auto=format&fit=crop&w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=1200&q=80',
   },
 ];
 
@@ -140,7 +136,7 @@ export default function Landing() {
           className="absolute inset-0 -z-30 scale-110"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=2400&q=80')",
+              "url('https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=2400&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             filter: "blur(6px) brightness(0.55)",
@@ -455,7 +451,7 @@ export default function Landing() {
             className="absolute inset-0 -z-10 opacity-40"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=2000&q=80')",
+                "url('https://images.unsplash.com/photo-1560493676-04071c5f467b?auto=format&fit=crop&w=2000&q=80')",
               backgroundSize: "cover",
               backgroundPosition: "center",
               filter: "blur(2px) brightness(0.6)",

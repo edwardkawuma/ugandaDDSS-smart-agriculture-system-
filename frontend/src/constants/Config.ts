@@ -1,3 +1,3 @@
 export const APP_CONFIG = {
-    APP_NAME: 'App'
+    APP_NAME: 'Uganda DDSS'
 }

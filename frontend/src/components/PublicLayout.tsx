@@ -55,10 +55,10 @@ const PublicLayout = ({ children }: PublicLayoutProps) => {
               </div>
               <div className="leading-none">
                 <span className="font-heading font-bold text-foreground text-base block">
-                  AgriWatch
+                  Uganda DDSS
                 </span>
                 <span className="text-[10px] text-primary/70 font-sans tracking-widest uppercase">
-                  Uganda
+                  Climate-Smart Ag
                 </span>
               </div>
             </Link>

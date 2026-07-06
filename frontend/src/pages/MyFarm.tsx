@@ -281,8 +281,8 @@ export default function MyFarm() {
             {/* Hero */}
             <div className="relative overflow-hidden rounded-lg shadow-xl glassmorphic border border-white/10">
                 <img
-                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80"
-                    alt="Uganda farm landscape"
+                    src="https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=1600&q=80"
+                    alt="Uganda farm — maize, coffee, banana and cassava fields"
                     className="absolute inset-0 w-full h-full object-cover opacity-40"
                     loading="lazy"
                 />
@@ -440,12 +440,29 @@ export default function MyFarm() {
                             onClick={() => gotoPage_8_sub_1(farm.id)}
                         >
                             <div className="relative h-40 w-full overflow-hidden">
-                                <img
-                                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=70"
-                                    alt={farm.farm_name}
-                                    className="w-full h-full object-cover"
-                                    loading="lazy"
-                                />
+                                {/* Pick image based on the farm's primary crop */}
+                                {(() => {
+                                    const primary = (farm.crops?.[0] ?? '').toLowerCase();
+                                    const img =
+                                        primary.includes('coffee')   ? 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('maize')    ? 'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('bean')     ? 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('banana') || primary.includes('matooke') ? 'https://images.unsplash.com/photo-1587334274328-64186a80aeee?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('cassava')  ? 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('avocado')  ? 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('tea')      ? 'https://images.unsplash.com/photo-1556610961-2febc32c4e73?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('sugar')    ? 'https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=800&q=80' :
+                                        primary.includes('cotton')   ? 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80' :
+                                        'https://images.unsplash.com/photo-1500651230702-0e2d8a49d4ad?auto=format&fit=crop&w=800&q=80';
+                                    return (
+                                        <img
+                                            src={img}
+                                            alt={farm.farm_name}
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                            loading="lazy"
+                                        />
+                                    );
+                                })()}
                                 <div className="absolute top-3 right-3">
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>

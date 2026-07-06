@@ -50,43 +50,55 @@ import {
   CalendarDays,
   X,
   Radar,
+  Satellite,
 } from "lucide-react";
 
 type NavItem = { label: string; href: string; icon: React.ElementType };
 
 const ROLE_NAV: Record<string, NavItem[]> = {
   farmer: [
-    { label: "Weather Alerts",        href: "/weather-alerts",       icon: CloudLightning },
-    { label: "Pest & Disease Warnings",href: "/pest-disease-warnings",icon: Bug },
-    { label: "Crop Recommendations",  href: "/crop-recommendations", icon: Sprout },
-    { label: "Crop Monitoring",       href: "/crop-monitoring",      icon: Radar },
-    { label: "My Farm",               href: "/my-farm",              icon: Tractor },
-    { label: "Market Prices",         href: "/market-prices",        icon: TrendingUp },
+    { label: "Weather Alerts",         href: "/weather-alerts",        icon: CloudLightning },
+    { label: "Pest & Disease Warnings", href: "/pest-disease-warnings", icon: Bug },
+    { label: "Crop Recommendations",   href: "/crop-recommendations",  icon: Sprout },
+    { label: "Crop Monitoring",        href: "/crop-monitoring",       icon: Radar },
+    { label: "Satellite Map",          href: "/sentinel-map",          icon: Satellite },
+    { label: "My Farm",                href: "/my-farm",               icon: Tractor },
+    { label: "Market Prices",          href: "/market-prices",         icon: TrendingUp },
   ],
   "extension worker": [
-    { label: "Farm Management",  href: "/farm-management",  icon: LayoutGrid },
-    { label: "Advisory Creation",href: "/advisory-creation",icon: ClipboardList },
-    { label: "Farmer Directory", href: "/farmer-directory", icon: Users },
-    { label: "Field Visits",     href: "/field-visits",     icon: MapPin },
-    { label: "Crop Monitoring",  href: "/crop-monitoring",  icon: Radar },
-    { label: "Alerts & Reports", href: "/alerts-reports",   icon: AlertTriangle },
+    { label: "Farm Management",   href: "/farm-management",   icon: LayoutGrid },
+    { label: "Advisory Creation", href: "/advisory-creation", icon: ClipboardList },
+    { label: "Farmer Directory",  href: "/farmer-directory",  icon: Users },
+    { label: "Field Visits",      href: "/field-visits",      icon: MapPin },
+    { label: "Crop Monitoring",   href: "/crop-monitoring",   icon: Radar },
+    { label: "Satellite Map",     href: "/sentinel-map",      icon: Satellite },
+    { label: "Alerts & Reports",  href: "/alerts-reports",    icon: AlertTriangle },
   ],
   researcher: [
-    { label: "Data Hub",            href: "/data-hub",            icon: Database },
-    { label: "AI Models",           href: "/ai-models",           icon: Brain },
-    { label: "Crop Monitoring",     href: "/crop-monitoring",     icon: Radar },
-    { label: "Statistical Analysis",href: "/statistical-analysis",icon: BarChart2 },
-    { label: "Custom Queries",      href: "/custom-queries",      icon: Search },
-    { label: "Research Outputs",    href: "/research-outputs",    icon: FileText },
-    { label: "Weather Data",        href: "/weather-data",        icon: Thermometer },
+    { label: "Data Hub",             href: "/data-hub",             icon: Database },
+    { label: "AI Models",            href: "/ai-models",            icon: Brain },
+    { label: "Crop Monitoring",      href: "/crop-monitoring",      icon: Radar },
+    { label: "Satellite Map",        href: "/sentinel-map",         icon: Satellite },
+    { label: "Statistical Analysis", href: "/statistical-analysis", icon: BarChart2 },
+    { label: "Custom Queries",       href: "/custom-queries",       icon: Search },
+    { label: "Research Outputs",     href: "/research-outputs",     icon: FileText },
+    { label: "Weather Data",         href: "/weather-data",         icon: Thermometer },
   ],
   "maaif official": [
-    { label: "Policy Dashboard",      href: "/policy-dashboard",      icon: LayoutDashboard },
-    { label: "National Statistics",   href: "/national-statistics",   icon: Globe },
-    { label: "Crop Monitoring",       href: "/crop-monitoring",       icon: Radar },
-    { label: "Production Reports",    href: "/production-reports",    icon: BarChart },
-    { label: "Pest & Disease Reports",href: "/pest-disease-reports",  icon: Bug },
-    { label: "District Maps",         href: "/district-maps",         icon: Map },
+    { label: "Policy Dashboard",       href: "/policy-dashboard",       icon: LayoutDashboard },
+    { label: "National Statistics",    href: "/national-statistics",    icon: Globe },
+    { label: "Crop Monitoring",        href: "/crop-monitoring",        icon: Radar },
+    { label: "Satellite Map",          href: "/sentinel-map",           icon: Satellite },
+    { label: "Production Reports",     href: "/production-reports",     icon: BarChart },
+    { label: "Pest & Disease Reports", href: "/pest-disease-reports",   icon: Bug },
+    { label: "District Maps",          href: "/district-maps",          icon: Map },
+  ],
+  "development partner": [
+    { label: "Monitoring Dashboard", href: "/monitoring-dashboard", icon: Activity },
+    { label: "Impact Assessment",    href: "/impact-assessment",    icon: Target },
+    { label: "Programme KPIs",       href: "/programme-kpis",       icon: Gauge },
+    { label: "Beneficiary Tracking", href: "/beneficiary-tracking", icon: Users },
+    { label: "Satellite Map",        href: "/sentinel-map",         icon: Satellite },
   ],
   "development partner": [
     { label: "Monitoring Dashboard", href: "/monitoring-dashboard", icon: Activity },
@@ -111,8 +123,8 @@ const ROLE_DISPLAY: Record<string, string> = {
   "public visitor": "Public Visitor",
 };
 
-const APP_NAME = "AgriSmart";
-const APP_TAGLINE = "Uganda DDSS";
+const APP_NAME    = "Uganda DDSS";
+const APP_TAGLINE = "Climate-Smart Agriculture";
 
 function NavContent({
   isCollapsed,
@@ -231,7 +243,7 @@ function NavContent({
           <AlertDialogContent>
             <AlertDialogTitle>Confirm Logout</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to log out of AgriSmart Uganda DDSS?
+              Are you sure you want to log out of Uganda DDSS?
             </AlertDialogDescription>
             <AlertDialogFooter>
               <AlertDialogCancel>Cancel</AlertDialogCancel>

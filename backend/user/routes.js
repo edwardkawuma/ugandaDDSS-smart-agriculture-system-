@@ -4,8 +4,8 @@ import { requireAuth } from '../auth/middleware.js';
 
 export const userRouter = Router();
 
-userRouter.get('/profile/:userId', requireAuth, (req, res) => {
-  const user = findUserById(req.params.userId);
+userRouter.get('/profile/:userId', requireAuth, async (req, res) => {
+  const user = await findUserById(req.params.userId);
   if (!user) return res.status(404).json({ message: 'User not found' });
   return res.json({
     user_id: user.user_id,

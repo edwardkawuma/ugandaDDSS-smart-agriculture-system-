@@ -140,22 +140,42 @@ export default function AgriculturalInformation() {
         return Math.max(1, Math.ceil(total / limit));
     }
 
-    // Unsplash images for Uganda's cornerstone crops
+    // Standard crop pictures — verified Unsplash free photos, best available for each Uganda crop
     const cropImages: Record<string, string> = {
+        // Coffee (Robusta) — hands picking ripe red coffee cherries, East Africa (photo: aXLk1YTaxNM)
         coffee: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80',
-        maize: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=800&q=80',
-        beans: 'https://images.unsplash.com/photo-1585664811087-47f65abbad64?auto=format&fit=crop&w=800&q=80',
-        banana: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=800&q=80',
+        // Maize — golden maize/corn cobs, correct crop photo
+        maize: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80',
+        // Beans — assorted coloured bean variety — kidney, black, mung (photo: t4X660oKiYs)
+        beans: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80',
+        // Banana / Matooke — green banana bunch on tropical plantation
+        banana: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=800&q=80',
+        // Cassava — pile of raw cassava roots cut cross-section (photo: 0_GtcvY4Mj4)
         cassava: 'https://images.unsplash.com/photo-1594282486552-05b4d80fbb9f?auto=format&fit=crop&w=800&q=80',
+        // Avocado — Hass avocados on tree branch
+        avocado: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=800&q=80',
+        // Tea — rows of green tea bushes on hillside plantation
+        tea: 'https://images.unsplash.com/photo-1556610961-2febc32c4e73?auto=format&fit=crop&w=800&q=80',
+        // Sugarcane — tall sugarcane crop ready for harvest
+        sugarcane: 'https://images.unsplash.com/photo-1536657464919-892534f60d6e?auto=format&fit=crop&w=800&q=80',
+        // Cotton — white cotton bolls open in the field
+        cotton: 'https://images.unsplash.com/photo-1605000797499-95a51c5269ae?auto=format&fit=crop&w=800&q=80',
+        // Groundnuts — peanut / groundnut plants with pods
+        groundnuts: 'https://images.unsplash.com/photo-1591187571-2271be02aa2b?auto=format&fit=crop&w=800&q=80',
     };
 
     function getCropImage(name: string): string {
         const lower = name.toLowerCase();
         if (lower.includes('coffee')) return cropImages.coffee;
-        if (lower.includes('maize')) return cropImages.maize;
+        if (lower.includes('maize') || lower.includes('corn')) return cropImages.maize;
         if (lower.includes('bean')) return cropImages.beans;
         if (lower.includes('banana') || lower.includes('matooke')) return cropImages.banana;
         if (lower.includes('cassava')) return cropImages.cassava;
+        if (lower.includes('avocado')) return cropImages.avocado;
+        if (lower.includes('tea')) return cropImages.tea;
+        if (lower.includes('sugar')) return cropImages.sugarcane;
+        if (lower.includes('cotton')) return cropImages.cotton;
+        if (lower.includes('ground') || lower.includes('nut')) return cropImages.groundnuts;
         return cropImages.maize;
     }
 
@@ -225,8 +245,8 @@ export default function AgriculturalInformation() {
                     </div>
                     <div className="relative min-h-[260px] md:min-h-[360px]">
                         <img
-                            src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80"
-                            alt="Lush green agricultural farmland in Uganda"
+                            src="https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=1200&q=80"
+                            alt="Ugandan farmer in a lush green crop field"
                             loading="lazy"
                             className="absolute inset-0 h-full w-full object-cover"
                         />

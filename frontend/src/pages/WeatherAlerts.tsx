@@ -153,8 +153,8 @@ export default function WeatherAlerts() {
       {/* HERO */}
       <section className="relative overflow-hidden rounded-lg border border-border/40 bg-card/60 backdrop-blur-md shadow-md">
         <img
-          src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80"
-          alt="Uganda farm landscape"
+          src="https://images.unsplash.com/photo-1602867741746-6df80f40b3f6?auto=format&fit=crop&w=1600&q=80"
+          alt="Uganda maize field under weather monitoring"
           className="absolute inset-0 h-full w-full object-cover opacity-50"
           loading="lazy"
         />

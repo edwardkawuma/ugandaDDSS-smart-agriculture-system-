@@ -418,8 +418,8 @@ export default function AdvisoryCreation() {
             {/* Page hero */}
             <div className="relative overflow-hidden rounded-lg shadow-xl border border-border/40 bg-card/60 backdrop-blur-md">
                 <img
-                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80"
-                    alt="Uganda farmland"
+                    src="https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=1600&q=80"
+                    alt="Uganda coffee farm advisory"
                     className="absolute inset-0 w-full h-full object-cover opacity-30"
                     loading="lazy"
                 />

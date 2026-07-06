@@ -225,8 +225,8 @@ export default function CropMonitoring() {
           </div>
           <div className="relative min-h-[220px] md:min-h-[280px]">
             <img
-              src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=1200&q=80"
-              alt="Drone over Ugandan farmland"
+              src="https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=1200&q=80"
+              alt="Ugandan farmer tending crops"
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />

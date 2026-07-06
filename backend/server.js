@@ -8,7 +8,9 @@ import { syncRouter } from './sync/routes.js';
 import { userRouter } from './user/routes.js';
 import { marketRouter } from './market/routes.js';
 import { cropMonitoringRouter } from './cropmonitoring/routes.js';
-import { getSqlite } from './db/sqlite.js';
+import { sentinelRouter } from './sentinel/routes.js';
+import { timeseriesRouter } from './timeseries/routes.js';
+import { getStoreInfo, initSqlStore } from './db/sqlite.js';
 import { seedDemoUsers } from './db/seedUsers.js';
 import { startSyncService } from './db/sync.js';
 
@@ -29,9 +31,13 @@ app.use('/api/sync', syncRouter);
 app.use('/api/gee', geeRouter);
 app.use('/api/market-prices', marketRouter);
 app.use('/api/crop-monitoring', cropMonitoringRouter);
+app.use('/api/sentinel',    sentinelRouter);
+app.use('/api/timeseries', timeseriesRouter);
 
 async function bootstrap() {
-  getSqlite();
+  await initSqlStore();
+  const store = getStoreInfo();
+  console.log(`[db] SQL store mode: ${store.mode}${store.path ? ` (${store.path})` : ''}`);
   await seedDemoUsers();
   await startSyncService();
 
@@ -43,6 +49,8 @@ async function bootstrap() {
     console.log('  GEE:           /api/gee/*');
     console.log('  Market Prices: /api/market-prices/* (UCDA/UBOS)');
   console.log('  Crop Monitor:  /api/crop-monitoring/* (IoT/UAV/NDVI)');
+  console.log('  Sentinel Hub:  /api/sentinel/* (WMS proxy + GeoTIFF export)');
+  console.log('  Time-Series:   /api/timeseries/* (Python cube pipeline)');
   });
 }
 

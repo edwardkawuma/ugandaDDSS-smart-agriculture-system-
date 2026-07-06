@@ -1,4 +1,4 @@
-import { getSqlite, getPendingSyncItems, markSyncQueueSynced } from './sqlite.js';
+import { getPendingSyncCount, getPendingSyncItems, markSyncQueueSynced, markUsersSynced } from './sqlite.js';
 import { isOnline, upsertUser, initPostgres } from './postgres.js';
 
 let syncInterval = null;
@@ -18,10 +18,10 @@ export function stopSyncService() {
 export async function syncNow() {
   const connected = await initPostgres();
   if (!connected) {
-    return { online: false, synced: 0, pending: getPendingSyncCount() };
+    return { online: false, synced: 0, pending: await getPendingSyncCount() };
   }
 
-  const items = getPendingSyncItems();
+  const items = await getPendingSyncItems();
   const syncedIds = [];
 
   for (const item of items) {
@@ -37,29 +37,24 @@ export async function syncNow() {
   }
 
   if (syncedIds.length) {
-    markSyncQueueSynced(syncedIds);
-    const database = getSqlite();
+    await markSyncQueueSynced(syncedIds);
     const now = new Date().toISOString();
-    for (const item of items.filter((i) => syncedIds.includes(i.id))) {
-      database.prepare('UPDATE users SET synced_at = ? WHERE user_id = ?').run(now, item.entity_id);
-    }
+    await markUsersSynced(
+      items.filter((item) => syncedIds.includes(item.id)).map((item) => item.entity_id),
+      now,
+    );
   }
 
-  return { online: true, synced: syncedIds.length, pending: getPendingSyncCount() };
+  return { online: true, synced: syncedIds.length, pending: await getPendingSyncCount() };
 }
 
-function getPendingSyncCount() {
-  const database = getSqlite();
-  const row = database.prepare('SELECT COUNT(*) AS count FROM sync_queue WHERE synced = 0').get();
-  return row?.count ?? 0;
-}
-
-export function getSyncStatus() {
+export async function getSyncStatus() {
+  const online = isOnline();
   return {
-    online: isOnline(),
-    pending: getPendingSyncCount(),
-    mode: isOnline() ? 'hybrid' : 'offline',
+    online,
+    pending: await getPendingSyncCount(),
+    mode: online ? 'hybrid' : 'offline',
     offlineStore: 'sqlite',
-    onlineStore: isOnline() ? 'postgresql' : null,
+    onlineStore: online ? 'postgresql' : null,
   };
 }

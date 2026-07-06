@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import { getSqlite, enqueueSync } from './sqlite.js';
+import { createUser, enqueueSync, findUserByEmailSql, findUserByIdSql } from './sqlite.js';
 import { isOnline, upsertUser } from './postgres.js';
 
 export const DEMO_USERS = [
@@ -14,12 +14,11 @@ export const DEMO_USERS = [
 const DEMO_PASSWORD = 'Demo@1234';
 
 export async function seedDemoUsers() {
-  const database = getSqlite();
   const passwordHash = await bcrypt.hash(DEMO_PASSWORD, 10);
   const now = new Date().toISOString();
 
   for (const demo of DEMO_USERS) {
-    const existing = database.prepare('SELECT user_id FROM users WHERE LOWER(email) = LOWER(?)').get(demo.email);
+    const existing = await findUserByEmailSql(demo.email);
     if (existing) continue;
 
     const userId = `demo-${demo.role.toLowerCase().replace(/\s+/g, '-')}`;
@@ -35,14 +34,9 @@ export async function seedDemoUsers() {
       synced_at: null,
     };
 
-    database
-      .prepare(
-        `INSERT INTO users (user_id, email, password_hash, name, role, is_email_verified, created_at, updated_at, synced_at)
-         VALUES (@user_id, @email, @password_hash, @name, @role, @is_email_verified, @created_at, @updated_at, @synced_at)`,
-      )
-      .run(user);
+    await createUser(user);
 
-    enqueueSync('users', userId, 'upsert', user);
+    await enqueueSync('users', userId, 'upsert', user);
 
     if (isOnline()) {
       await upsertUser(user).catch(() => {});
@@ -52,12 +46,10 @@ export async function seedDemoUsers() {
   console.log(`[db] Demo users ready (${DEMO_USERS.length} roles, password: ${DEMO_PASSWORD})`);
 }
 
-export function findUserByEmail(email) {
-  const database = getSqlite();
-  return database.prepare('SELECT * FROM users WHERE LOWER(email) = LOWER(?)').get(email);
+export async function findUserByEmail(email) {
+  return findUserByEmailSql(email);
 }
 
-export function findUserById(userId) {
-  const database = getSqlite();
-  return database.prepare('SELECT * FROM users WHERE user_id = ?').get(userId);
+export async function findUserById(userId) {
+  return findUserByIdSql(userId);
 }

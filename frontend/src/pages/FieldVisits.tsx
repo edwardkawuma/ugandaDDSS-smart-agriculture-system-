@@ -329,7 +329,7 @@ export default function FieldVisits() {
             {/* Page hero */}
             <div className="relative overflow-hidden rounded-lg shadow-xl border border-border/40 bg-card/60 backdrop-blur-md">
                 <img
-                    src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=1600&q=80"
+                    src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&w=1200&q=80"
                     alt="Uganda farmland field visit"
                     className="absolute inset-0 w-full h-full object-cover opacity-30"
                     loading="lazy"

@@ -8,6 +8,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
     "@google/earthengine": "^1.4.5",
     "agrismart-uganda": "file:..",
     "bcryptjs": "^2.4.3",

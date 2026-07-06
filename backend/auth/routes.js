@@ -2,7 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import { findUserByEmail } from '../db/seedUsers.js';
 import { signToken } from './jwt.js';
-import { enqueueSync, getSqlite } from '../db/sqlite.js';
+import { createUser, enqueueSync, updateUserVerification } from '../db/sqlite.js';
 import { isOnline, upsertUser } from '../db/postgres.js';
 
 export const authRouter = Router();
@@ -23,7 +23,7 @@ authRouter.post('/signin', async (req, res) => {
     return res.status(400).json({ message: 'Email and password are required' });
   }
 
-  const user = findUserByEmail(email);
+  const user = await findUserByEmail(email);
   if (!user) {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
@@ -45,11 +45,10 @@ authRouter.post('/signup', async (req, res) => {
   if (password.length < 8) {
     return res.status(400).json({ message: 'Password must be at least 8 characters' });
   }
-  if (findUserByEmail(email)) {
+  if (await findUserByEmail(email)) {
     return res.status(409).json({ message: 'Email already registered' });
   }
 
-  const database = getSqlite();
   const now = new Date().toISOString();
   const userId = `user-${Date.now().toString(36)}`;
   const passwordHash = await bcrypt.hash(password, 10);
@@ -65,31 +64,22 @@ authRouter.post('/signup', async (req, res) => {
     synced_at: null,
   };
 
-  database
-    .prepare(
-      `INSERT INTO users (user_id, email, password_hash, name, role, is_email_verified, created_at, updated_at, synced_at)
-       VALUES (@user_id, @email, @password_hash, @name, @role, @is_email_verified, @created_at, @updated_at, @synced_at)`,
-    )
-    .run(user);
+  await createUser(user);
 
-  enqueueSync('users', userId, 'upsert', user);
+  await enqueueSync('users', userId, 'upsert', user);
   if (isOnline()) await upsertUser(user).catch(() => {});
 
   return res.json({ user_id: userId, message: 'Account created. Verify your email with OTP.' });
 });
 
-authRouter.post('/verifyOtp', (req, res) => {
+authRouter.post('/verifyOtp', async (req, res) => {
   const { email } = req.body ?? {};
-  const user = email ? findUserByEmail(email) : null;
+  const user = email ? await findUserByEmail(email) : null;
   if (!user) {
     return res.status(404).json({ message: 'User not found' });
   }
 
-  const database = getSqlite();
-  database.prepare('UPDATE users SET is_email_verified = 1, updated_at = ? WHERE user_id = ?').run(
-    new Date().toISOString(),
-    user.user_id,
-  );
+  await updateUserVerification(user.user_id);
 
   const token = signToken(user);
   return res.json({ token, user_id: user.user_id, role: user.role });
