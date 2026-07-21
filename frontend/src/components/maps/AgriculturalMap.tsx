@@ -102,7 +102,7 @@ export function AgriculturalMap({
   return (
     <div className={cn('grid grid-cols-1 gap-4', showLayerPanel && 'lg:grid-cols-[260px_1fr]', className)}>
       {showLayerPanel && (
-        <Card className="self-start border-border/40 bg-card/60 shadow-md backdrop-blur-md">
+        <Card className="self-start border-border/40 bg-background/70 shadow-md backdrop-blur-md">
           <CardHeader className="pb-2">
             <CardTitle className="font-heading text-base">Map Layers</CardTitle>
             <CardDescription className="text-xs">{statusMessage || 'Loading geospatial services…'}</CardDescription>
@@ -115,21 +115,30 @@ export function AgriculturalMap({
               </div>
             ) : (
               <>
-                <div className="space-y-2 rounded-lg border border-border/40 bg-card/40 p-3">
+                <div className="space-y-2 rounded-lg border border-border/40 bg-background/45 p-3">
                   <Label className="flex items-center gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                     <MapPin className="h-3.5 w-3.5" />
                     Uganda Overlays
                   </Label>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm">National boundary</span>
+                  <div className="flex items-center justify-between gap-2 border-b border-border/30 pb-2">
+                    <span className="flex items-center gap-2 text-sm">
+                      <span className="h-2.5 w-2.5 rounded-full bg-primary/80" />
+                      National boundary
+                    </span>
                     <Switch checked={showBoundary} onCheckedChange={setShowBoundary} aria-label="National boundary" />
                   </div>
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm">District boundaries</span>
+                  <div className="flex items-center justify-between gap-2 border-b border-border/30 pb-2">
+                    <span className="flex items-center gap-2 text-sm">
+                      <span className="h-2.5 w-2.5 rounded-full bg-sky-400/80" />
+                      District boundaries
+                    </span>
                     <Switch checked={showDistricts} onCheckedChange={setShowDistricts} aria-label="District boundaries" />
                   </div>
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm">Agricultural layers</span>
+                    <span className="flex items-center gap-2 text-sm">
+                      <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
+                      Agricultural layers
+                    </span>
                     <Switch
                       checked={showAgLayers}
                       onCheckedChange={(v) => {
@@ -155,7 +164,7 @@ export function AgriculturalMap({
                   <button
                     type="button"
                     onClick={resetLayers}
-                    className="w-full rounded-md border border-border/50 px-3 py-1.5 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
+                    className="w-full rounded-md border border-border/40 bg-background/40 px-3 py-1.5 text-xs text-muted-foreground transition hover:border-primary/40 hover:text-foreground"
                   >
                     Reset to boundary only
                   </button>
@@ -166,7 +175,7 @@ export function AgriculturalMap({
         </Card>
       )}
 
-      <Card className="overflow-hidden border-border/40 bg-card/60 shadow-md backdrop-blur-md">
+      <Card className="overflow-hidden border-border/40 bg-background/70 shadow-md backdrop-blur-md">
         <CardHeader className="border-b border-border/40 pb-2">
           <CardTitle className="font-heading text-lg">{title}</CardTitle>
           <CardDescription>{description}</CardDescription>
@@ -186,8 +195,8 @@ export function AgriculturalMap({
             >
               <ZoomControl position="topright" />
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                attribution='&copy; <a href="https://www.google.com/maps">Google Hybrid</a>'
+                url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
               />
               {showBoundary && <UgandaBoundaryLayer />}
               {showDistricts && <UgandaDistrictsLayer visible={showDistricts} />}

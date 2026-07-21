@@ -136,43 +136,44 @@ export default function Landing() {
           className="absolute inset-0 -z-30 scale-110"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1595508064774-5ff825520bb6?auto=format&fit=crop&w=2400&q=80')",
+              "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2400&q=80')",
             backgroundSize: "cover",
             backgroundPosition: "center",
-            filter: "blur(6px) brightness(0.55)",
+            filter: "blur(8px) brightness(0.32) saturate(1.05)",
             transform: "translate3d(0,0,0)",
           }}
         />
-        {/* Mid layer — soft gradient veil */}
+        {/* Mid layer — warm sunlit gradient veil */}
         <div
           aria-hidden
           className="absolute inset-0 -z-20"
           style={{
             background:
-              "radial-gradient(1200px 600px at 20% 20%, rgba(20,83,45,0.35), transparent 60%), radial-gradient(900px 500px at 85% 80%, rgba(132,204,22,0.30), transparent 60%)",
+              "linear-gradient(110deg, rgba(12, 18, 10, 0.88) 0%, rgba(16, 24, 12, 0.75) 38%, rgba(12, 20, 12, 0.66) 100%), radial-gradient(1300px 700px at 22% 16%, rgba(255, 190, 90, 0.24), transparent 40%), radial-gradient(900px 450px at 82% 20%, rgba(255, 200, 110, 0.16), transparent 45%), radial-gradient(220px 220px at 60% 15%, rgba(255, 255, 220, 0.18), transparent 45%)",
           }}
         />
+        <div aria-hidden className="absolute inset-0 -z-10 bg-black/32" />
         {/* Foreground depth fragments — drift cards */}
         <div
           aria-hidden
-          className="pointer-events-none absolute right-6 top-24 hidden h-44 w-72 -rotate-3 rounded-xl border border-white/30 bg-white/10 p-4 shadow-2xl backdrop-blur-xl md:block"
-          style={{ transform: "translate3d(0,0,40px) rotate(-3deg)" }}
+          className="pointer-events-none absolute right-6 top-24 hidden h-44 w-72 -rotate-2 rounded-3xl border border-white/10 bg-slate-900/85 p-4 shadow-[0_30px_60px_rgba(15,23,42,0.28)] backdrop-blur-3xl md:block"
+          style={{ transform: "translate3d(0,0,42px) rotate(-2deg)" }}
         >
-          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-white/80">
-            <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-amber-400" />
+          <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-slate-100/85">
+            <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-amber-400 shadow-[0_0_14px_rgba(245,158,11,0.35)]" />
             Pest Alert — Eastern Region
           </div>
-          <div className="mt-3 font-heading text-lg leading-tight text-white">
-            Coffee Berry Borer outbreak risk: <span className="text-amber-300">HIGH</span>
+          <div className="mt-3 font-heading text-lg leading-tight text-slate-100">
+            Coffee Berry Borer outbreak risk: <span className="text-amber-200">HIGH</span>
           </div>
-          <div className="mt-2 text-xs text-white/70">
+          <div className="mt-2 text-xs text-slate-300">
             Triggered by sustained humidity &gt; 80% over the last 6 days.
           </div>
         </div>
         <div
           aria-hidden
-          className="pointer-events-none absolute bottom-28 left-6 hidden h-36 w-60 rotate-2 rounded-xl border border-white/30 bg-white/10 p-4 shadow-2xl backdrop-blur-xl lg:block"
-          style={{ transform: "translate3d(0,0,55px) rotate(2deg)" }}
+          className="pointer-events-none absolute bottom-28 left-6 hidden h-36 w-60 rounded-3xl border border-white/10 bg-slate-900/85 p-4 shadow-[0_30px_60px_rgba(15,23,42,0.24)] backdrop-blur-3xl lg:block"
+          style={{ transform: "translate3d(0,0,48px) rotate(1deg)" }}
         >
           <div className="text-xs font-medium uppercase tracking-wider text-white/80">
             Long Rains 2026 — Forecast
@@ -191,18 +192,18 @@ export default function Landing() {
 
         {/* Hero content — base plane */}
         <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-6xl flex-col items-start justify-center px-6 py-24 md:px-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-white backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-lime-300" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-slate-950/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-slate-100 shadow-xl shadow-slate-950/40 backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_10px_rgba(110,231,183,0.55)]" />
             National Agricultural Data Hub · Uganda
           </div>
           <h1 className="mt-6 max-w-3xl font-heading text-5xl font-semibold leading-[1.05] text-white md:text-7xl">
             Climate-smart decisions,
             <br />
-            <span className="bg-gradient-to-r from-lime-200 via-amber-200 to-emerald-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-amber-200 via-orange-200 to-slate-100 bg-clip-text text-transparent">
               rooted in Ugandan soil.
             </span>
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-100/95 md:text-xl">
             A unified decision-support platform integrating weather, pest, soil, and
             market data to help farmers, extension workers, researchers, and
             policymakers grow more — and lose less — across coffee, maize, beans,
@@ -212,18 +213,18 @@ export default function Landing() {
             <Button
               size="lg"
               onClick={gotoPage_2}
-              className="border-primary bg-transparent text-primary shadow-[0_0_18px_hsl(var(--primary)/0.55)] transition-all duration-200 ease-out hover:shadow-[0_0_28px_hsl(var(--primary)/0.75)]"
+              className="rounded-full border border-amber-300/40 bg-amber-300/10 px-6 py-3 text-base text-amber-100 shadow-[0_20px_50px_rgba(245,158,11,0.18)] transition duration-200 ease-out hover:border-amber-300/60 hover:bg-amber-300/18 hover:text-white"
             >
-              <Map className="mr-2 h-5 w-5" />
+              <Map className="mr-2 h-5 w-5 text-emerald-200" />
               Explore Public Maps
             </Button>
             <Button
               size="lg"
               variant="outline"
               onClick={() => navigate("/login")}
-              className="border-white/40 bg-white/5 text-white backdrop-blur-md hover:bg-white/15"
+              className="rounded-full border border-white/25 bg-slate-900/85 px-6 py-3 text-base text-white shadow-xl shadow-slate-950/30 backdrop-blur-md hover:border-emerald-300/40 hover:bg-slate-900/95 hover:text-emerald-100"
             >
-              <LogIn className="mr-2 h-5 w-5" />
+              <LogIn className="mr-2 h-5 w-5 text-white" />
               Sign in
             </Button>
           </div>
@@ -238,10 +239,10 @@ export default function Landing() {
             ].map((s) => (
               <div
                 key={s.v}
-                className="rounded-lg border border-white/25 bg-white/10 p-4 text-white shadow-lg backdrop-blur-md"
+                className="rounded-3xl border border-white/10 bg-slate-900/85 p-5 text-slate-100 shadow-[0_20px_40px_rgba(15,23,42,0.2)] backdrop-blur-3xl"
               >
-                <div className="font-heading text-3xl font-semibold">{s.k}</div>
-                <div className="mt-1 text-xs uppercase tracking-wider text-white/70">
+                <div className="font-heading text-3xl font-semibold text-white">{s.k}</div>
+                <div className="mt-1 text-xs uppercase tracking-[0.24em] text-slate-300">
                   {s.v}
                 </div>
               </div>

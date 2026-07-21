@@ -7,11 +7,20 @@
 // out of the bundle.
 
 import apiService from './apiService';
+import { authClient, mapsClient, syncClient } from './authClient';
 
 export async function installMockAdapter(): Promise<void> {
   if (import.meta.env.VITE_USE_MOCK !== 'true') return;
   const mod = await import('./mockAdapter');
-  apiService.installAdapter(mod.mockAdapter as unknown as (config: any) => Promise<any>);
+  const adapter = mod.mockAdapter as unknown as (config: any) => Promise<any>;
+
+  // Ensure every axios-based client uses the same mock transport in mock mode.
+  // Without this, auth flows can bypass mocks and hit the Vite proxy.
+  apiService.installAdapter(adapter);
+  authClient.defaults.adapter = adapter;
+  mapsClient.defaults.adapter = adapter;
+  syncClient.defaults.adapter = adapter;
+
   // eslint-disable-next-line no-console
-  console.info('[apiService] mock adapter installed (VITE_USE_MOCK=true)');
+  console.info('[apiService] mock adapter installed for apiService + auth/maps/sync clients (VITE_USE_MOCK=true)');
 }

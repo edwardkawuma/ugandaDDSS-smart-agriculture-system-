@@ -10,6 +10,7 @@ import { marketRouter } from './market/routes.js';
 import { cropMonitoringRouter } from './cropmonitoring/routes.js';
 import { sentinelRouter } from './sentinel/routes.js';
 import { timeseriesRouter } from './timeseries/routes.js';
+import { demoDataRouter } from './data/routes.js';
 import { getStoreInfo, initSqlStore } from './db/sqlite.js';
 import { seedDemoUsers } from './db/seedUsers.js';
 import { startSyncService } from './db/sync.js';
@@ -33,6 +34,7 @@ app.use('/api/market-prices', marketRouter);
 app.use('/api/crop-monitoring', cropMonitoringRouter);
 app.use('/api/sentinel',    sentinelRouter);
 app.use('/api/timeseries', timeseriesRouter);
+app.use('/api', demoDataRouter);
 
 async function bootstrap() {
   await initSqlStore();

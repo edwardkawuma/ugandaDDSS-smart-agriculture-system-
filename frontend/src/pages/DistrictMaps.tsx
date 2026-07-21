@@ -57,8 +57,6 @@ import {
     Thermometer,
     Wind,
     Droplets,
-    Eye,
-    EyeOff,
     ChevronLeft,
     ChevronRight,
     ExternalLink,
@@ -308,7 +306,7 @@ export default function DistrictMaps() {
             </div>
 
             {/* Layer Controls */}
-            <Card className="backdrop-blur-md bg-card/60 border border-border/40 rounded-lg shadow-md">
+            <Card className="backdrop-blur-md bg-background/70 border border-border/40 rounded-lg shadow-md">
                 <CardHeader className="pb-3">
                     <CardTitle className="font-heading text-lg flex items-center gap-2">
                         <Layers className="w-5 h-5 text-primary" />
@@ -316,7 +314,7 @@ export default function DistrictMaps() {
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                    <div className="rounded-lg border border-border/40 bg-background/45 px-3 py-2">
                         {[
                             { key: 'production' as const, label: 'Crop Production', icon: <Leaf className="w-4 h-4" />, color: 'text-green-400' },
                             { key: 'pestAlerts' as const, label: 'Pest Alerts', icon: <Bug className="w-4 h-4" />, color: 'text-red-400' },
@@ -325,19 +323,28 @@ export default function DistrictMaps() {
                             { key: 'agroZones' as const, label: 'Agro-Ecological Zones', icon: <Trees className="w-4 h-4" />, color: 'text-emerald-400' },
                             { key: 'weatherOverlay' as const, label: 'Weather', icon: <CloudRain className="w-4 h-4" />, color: 'text-cyan-400' },
                         ].map(layer => (
-                            <div key={layer.key} className={`flex flex-col items-center gap-2 p-3 rounded-lg border transition-all duration-200 cursor-pointer ${activeLayers[layer.key] ? 'border-primary/40 bg-primary/5' : 'border-border/30 bg-card/30'}`} onClick={() => toggleLayer(layer.key)}>
-                                <div className={`${layer.color} ${activeLayers[layer.key] ? 'opacity-100' : 'opacity-40'} transition-opacity duration-200`}>
-                                    {layer.icon}
-                                </div>
-                                <span className={`text-xs font-medium text-center leading-tight ${activeLayers[layer.key] ? 'text-foreground' : 'text-muted-foreground'}`}>
-                                    {layer.label}
-                                </span>
-                                <div className="flex items-center gap-1.5">
-                                    {activeLayers[layer.key] ? <Eye className="w-3 h-3 text-primary" /> : <EyeOff className="w-3 h-3 text-muted-foreground" />}
-                                    <span className={`text-xs ${activeLayers[layer.key] ? 'text-primary' : 'text-muted-foreground'}`}>
-                                        {activeLayers[layer.key] ? 'On' : 'Off'}
+                            <div
+                                key={layer.key}
+                                className="flex items-center justify-between gap-3 border-b border-border/30 py-2 last:border-b-0"
+                            >
+                                <button
+                                    type="button"
+                                    onClick={() => toggleLayer(layer.key)}
+                                    className="flex min-w-0 flex-1 items-center gap-2 text-left"
+                                >
+                                    <span className={`h-2.5 w-2.5 shrink-0 rounded-full ${activeLayers[layer.key] ? 'bg-primary' : 'bg-muted-foreground/35'}`} />
+                                    <span className={`${layer.color} ${activeLayers[layer.key] ? 'opacity-100' : 'opacity-55'} transition-opacity duration-200`}>
+                                        {layer.icon}
                                     </span>
-                                </div>
+                                    <span className={`truncate text-sm font-medium ${activeLayers[layer.key] ? 'text-foreground' : 'text-muted-foreground'}`}>
+                                        {layer.label}
+                                    </span>
+                                </button>
+                                <Switch
+                                    checked={activeLayers[layer.key]}
+                                    onCheckedChange={() => toggleLayer(layer.key)}
+                                    aria-label={`Toggle ${layer.label}`}
+                                />
                             </div>
                         ))}
                     </div>
@@ -346,7 +353,7 @@ export default function DistrictMaps() {
 
             {/* Main Content Tabs */}
             <Tabs value={activeTab} onValueChange={v => setActiveTab(v as typeof activeTab)}>
-                <TabsList className="bg-card/60 backdrop-blur-md border border-border/40 rounded-lg">
+                <TabsList className="bg-background/70 backdrop-blur-md border border-border/40 rounded-lg">
                     <TabsTrigger value="map" className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary">
                         <Map className="w-4 h-4 mr-1.5" />
                         Map View
@@ -387,9 +394,9 @@ export default function DistrictMaps() {
 
                     {/* Quick stats row */}
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
-                        <Card className="backdrop-blur-md bg-card/60 border border-border/40 rounded-lg shadow-md p-4">
+                        <Card className="backdrop-blur-md bg-background/70 border border-border/40 rounded-lg shadow-md p-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-green-500/15 flex items-center justify-center">
+                                <div className="w-9 h-9 rounded-lg border border-green-500/30 bg-black/20 flex items-center justify-center">
                                     <Leaf className="w-5 h-5 text-green-400" />
                                 </div>
                                 <div>
@@ -400,9 +407,9 @@ export default function DistrictMaps() {
                                 </div>
                             </div>
                         </Card>
-                        <Card className="backdrop-blur-md bg-card/60 border border-border/40 rounded-lg shadow-md p-4">
+                        <Card className="backdrop-blur-md bg-background/70 border border-border/40 rounded-lg shadow-md p-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-red-500/15 flex items-center justify-center">
+                                <div className="w-9 h-9 rounded-lg border border-red-500/30 bg-black/20 flex items-center justify-center">
                                     <Bug className="w-5 h-5 text-red-400" />
                                 </div>
                                 <div>
@@ -413,9 +420,9 @@ export default function DistrictMaps() {
                                 </div>
                             </div>
                         </Card>
-                        <Card className="backdrop-blur-md bg-card/60 border border-border/40 rounded-lg shadow-md p-4">
+                        <Card className="backdrop-blur-md bg-background/70 border border-border/40 rounded-lg shadow-md p-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-amber-500/15 flex items-center justify-center">
+                                <div className="w-9 h-9 rounded-lg border border-amber-500/30 bg-black/20 flex items-center justify-center">
                                     <Users className="w-5 h-5 text-amber-400" />
                                 </div>
                                 <div>
@@ -426,9 +433,9 @@ export default function DistrictMaps() {
                                 </div>
                             </div>
                         </Card>
-                        <Card className="backdrop-blur-md bg-card/60 border border-border/40 rounded-lg shadow-md p-4">
+                        <Card className="backdrop-blur-md bg-background/70 border border-border/40 rounded-lg shadow-md p-4">
                             <div className="flex items-center gap-3">
-                                <div className="w-9 h-9 rounded-lg bg-cyan-500/15 flex items-center justify-center">
+                                <div className="w-9 h-9 rounded-lg border border-cyan-500/30 bg-black/20 flex items-center justify-center">
                                     <CloudRain className="w-5 h-5 text-cyan-400" />
                                 </div>
                                 <div>

@@ -20,7 +20,7 @@ import { Separator } from '@/components/ui/separator';
 import { cn }        from '@/lib/utils';
 import {
   Satellite, Layers, Info, MapPin, Leaf,
-  Droplets, Tractor, Eye, RefreshCw, X, ChevronRight,
+  Droplets, Tractor, Eye, RefreshCw, X,
 } from 'lucide-react';
 import {
   UGANDA_CENTER, UGANDA_ZOOM,
@@ -107,7 +107,7 @@ export default function SentinelMapDashboard() {
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
           </div>
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function SentinelMapDashboard() {
       <div className="grid gap-4 xl:grid-cols-[260px_1fr_280px]">
 
         {/* ── LEFT: Layer selector ── */}
-        <Card className="self-start rounded-2xl border border-border/40 bg-card/60 backdrop-blur-md shadow-md">
+        <Card className="self-start rounded-2xl border border-border/40 bg-background/70 backdrop-blur-md shadow-md">
           <CardHeader className="pb-3">
             <CardTitle className="text-base font-heading flex items-center gap-2">
               <Layers className="h-4 w-4 text-primary" /> Sentinel Layers
@@ -128,7 +128,7 @@ export default function SentinelMapDashboard() {
           <CardContent className="space-y-1 pt-0">
 
             {/* WMS overlay toggle */}
-            <div className="flex items-center justify-between rounded-xl border border-border/40 bg-card/40 px-3 py-2 mb-3">
+            <div className="flex items-center justify-between rounded-xl border border-border/40 bg-background/45 px-3 py-2 mb-3">
               <span className="text-sm">WMS tile overlay</span>
               <button
                 onClick={() => setShowWmsTiles(v => !v)}
@@ -146,7 +146,7 @@ export default function SentinelMapDashboard() {
             </div>
 
             {/* District fill opacity */}
-            <div className="rounded-xl border border-border/40 bg-card/40 px-3 py-2 mb-3 space-y-1.5">
+            <div className="rounded-xl border border-border/40 bg-background/45 px-3 py-2 mb-3 space-y-1.5">
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>District opacity</span>
                 <span className="font-mono">{Math.round(districtOpacity * 100)}%</span>
@@ -160,7 +160,7 @@ export default function SentinelMapDashboard() {
             </div>
 
             {/* Boundary toggle */}
-            <div className="flex items-center justify-between rounded-xl border border-border/40 bg-card/40 px-3 py-2 mb-3">
+            <div className="flex items-center justify-between rounded-xl border border-border/40 bg-background/45 px-3 py-2 mb-3">
               <span className="text-sm">National boundary</span>
               <button
                 onClick={() => setShowBoundary(v => !v)}
@@ -185,7 +185,7 @@ export default function SentinelMapDashboard() {
               const Icon        = GROUP_ICONS[group] ?? Layers;
               return (
                 <div key={group} className="space-y-1 mb-3">
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 flex items-center gap-1 px-1">
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 flex items-center gap-1 px-1">
                     <Icon className="h-3 w-3" /> {group}
                   </p>
                   {groupLayers.map(layer => {
@@ -195,15 +195,23 @@ export default function SentinelMapDashboard() {
                         key={layer.id}
                         onClick={() => handleLayerSelect(layer.id as SentinelLayerId)}
                         className={cn(
-                          'w-full text-left rounded-xl border px-3 py-2 text-sm transition-all',
+                          'w-full border-b border-border/30 px-1 py-2.5 text-left text-sm transition-all',
                           isActive
-                            ? 'border-primary/60 bg-primary/12 text-foreground font-medium'
-                            : 'border-border/40 bg-card/40 text-muted-foreground hover:border-border/70 hover:text-foreground',
+                            ? 'text-foreground font-medium'
+                            : 'text-muted-foreground hover:text-foreground',
                         )}
                       >
                         <span className="flex items-center justify-between gap-2">
-                          {layer.name}
-                          {isActive && <ChevronRight className="h-3.5 w-3.5 text-primary shrink-0" />}
+                          <span className="inline-flex items-center gap-2">
+                            <span
+                              className={cn(
+                                'inline-block h-2.5 w-2.5 rounded-full ring-1 ring-inset',
+                                isActive ? 'bg-primary ring-primary/70' : 'bg-muted-foreground/30 ring-border/60',
+                              )}
+                            />
+                            {layer.name}
+                          </span>
+                          {isActive && <span className="text-[10px] uppercase tracking-wide text-primary">Active</span>}
                         </span>
                       </button>
                     );
@@ -213,7 +221,7 @@ export default function SentinelMapDashboard() {
             })}
 
             {/* Active layer legend */}
-            <div className="rounded-xl border border-border/40 bg-card/40 p-3 mt-2">
+            <div className="rounded-xl border border-border/40 bg-background/50 p-3 mt-2">
               <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground/60 mb-2">
                 Legend — {activeDef.name}
               </p>
@@ -236,7 +244,7 @@ export default function SentinelMapDashboard() {
         </Card>
 
         {/* ── CENTRE: Interactive map ── */}
-        <Card className="overflow-hidden rounded-2xl border border-border/40 bg-card/60 backdrop-blur-md shadow-md">
+        <Card className="overflow-hidden rounded-2xl border border-border/40 bg-background/70 backdrop-blur-md shadow-md">
           <CardHeader className="border-b border-border/40 pb-3">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <div>
@@ -268,11 +276,10 @@ export default function SentinelMapDashboard() {
               >
                 <ZoomControl position="topright" />
 
-                {/* Subtle base tiles */}
+                {/* Google Hybrid basemap */}
                 <TileLayer
-                  url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-                  attribution='&copy; <a href="https://carto.com">CARTO</a>'
-                  opacity={0.5}
+                  url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"
+                  attribution='&copy; <a href="https://www.google.com/maps">Google Hybrid</a>'
                 />
 
                 {/* Sentinel Hub WMS overlay (behind districts) */}
@@ -282,7 +289,7 @@ export default function SentinelMapDashboard() {
                     layers={activeDef.wmsLayer}
                     format="image/png"
                     transparent
-                    opacity={0.35}
+                    opacity={0.3}
                     version="1.3.0"
                     // @ts-ignore
                     MAXCC="20"
@@ -305,7 +312,7 @@ export default function SentinelMapDashboard() {
               </MapContainer>
 
               {/* Floating info pill */}
-              <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-1.5 rounded-xl bg-background/80 backdrop-blur-md border border-border/40 px-3 py-2 text-xs text-muted-foreground shadow-sm">
+              <div className="pointer-events-none absolute bottom-4 left-4 flex items-center gap-1.5 rounded-xl bg-black/45 backdrop-blur-md border border-white/20 px-3 py-2 text-xs text-white/85 shadow-sm">
                 <Info className="h-3.5 w-3.5 shrink-0" />
                 BBox W29.5 S−1.5 E35.0 N4.2 · Click district for details
               </div>
