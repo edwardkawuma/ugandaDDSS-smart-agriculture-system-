@@ -135,11 +135,10 @@ export default function Landing() {
           aria-hidden
           className="absolute inset-0 -z-30 scale-110"
           style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2400&q=80')",
+            backgroundImage: "url('/images/coffee.png')",
             backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(8px) brightness(0.32) saturate(1.05)",
+            backgroundPosition: "center center",
+            filter: "blur(4px) brightness(0.78) saturate(1.16) contrast(1.05)",
             transform: "translate3d(0,0,0)",
           }}
         />
@@ -149,14 +148,15 @@ export default function Landing() {
           className="absolute inset-0 -z-20"
           style={{
             background:
-              "linear-gradient(110deg, rgba(12, 18, 10, 0.88) 0%, rgba(16, 24, 12, 0.75) 38%, rgba(12, 20, 12, 0.66) 100%), radial-gradient(1300px 700px at 22% 16%, rgba(255, 190, 90, 0.24), transparent 40%), radial-gradient(900px 450px at 82% 20%, rgba(255, 200, 110, 0.16), transparent 45%), radial-gradient(220px 220px at 60% 15%, rgba(255, 255, 220, 0.18), transparent 45%)",
+              "linear-gradient(110deg, rgba(6, 10, 7, 0.82) 0%, rgba(12, 18, 10, 0.70) 34%, rgba(14, 20, 11, 0.55) 52%, rgba(18, 22, 14, 0.28) 100%), radial-gradient(1300px 700px at 22% 18%, rgba(255, 180, 80, 0.28), transparent 40%), radial-gradient(900px 450px at 82% 18%, rgba(255, 205, 120, 0.18), transparent 48%), radial-gradient(260px 260px at 62% 14%, rgba(255, 245, 210, 0.24), transparent 46%)",
           }}
         />
         <div aria-hidden className="absolute inset-0 -z-10 bg-black/32" />
+        <div aria-hidden className="absolute left-0 top-0 z-[-5] h-full w-[55%] bg-gradient-to-r from-slate-950/85 via-slate-950/15 to-transparent" />
         {/* Foreground depth fragments — drift cards */}
         <div
           aria-hidden
-          className="pointer-events-none absolute right-6 top-24 hidden h-44 w-72 -rotate-2 rounded-3xl border border-white/10 bg-slate-900/85 p-4 shadow-[0_30px_60px_rgba(15,23,42,0.28)] backdrop-blur-3xl md:block"
+          className="pointer-events-none absolute right-6 top-24 hidden h-44 w-72 -rotate-2 rounded-3xl border border-white/12 bg-slate-900/90 p-4 shadow-[0_30px_80px_rgba(15,23,42,0.32)] backdrop-blur-3xl md:block"
           style={{ transform: "translate3d(0,0,42px) rotate(-2deg)" }}
         >
           <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-slate-100/85">
