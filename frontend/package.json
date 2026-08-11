@@ -8,7 +8,7 @@
     "build": "npm run check:require && vite build",
     "build:dev": "npm run check:require && vite build --mode development",
     "lint": "eslint .",
-    "check:require": "node scripts/check-require.cjs",
+    "check:require": "node -e \"const fs=require('fs');const path=require('path');const root='src';const exts=new Set(['.ts','.tsx']);const bad=[];(function walk(d){for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(exts.has(path.extname(e.name))){const t=fs.readFileSync(p,'utf8');if(t.includes('require('))bad.push(p);}}})(root);if(bad.length){console.error('✖ require() is not allowed in our ESM build. Replace it with import statements.');for(const p of bad)console.error('  - '+p);process.exit(1);}console.log('✓ no require() found in src TS/TSX files');\"",
     "preview": "vite preview"
   },
   "dependencies": {
