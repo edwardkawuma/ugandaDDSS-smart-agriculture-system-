@@ -142,10 +142,10 @@ export default function WeatherAlerts() {
     }
 
     function gotoPage_6() {
-        navigate('/farmer/pest-disease');
+      navigate('/pest-disease-warnings');
     }
     function gotoPage_7() {
-        navigate('/farmer/recommendations');
+      navigate('/crop-recommendations');
     }
 
     return (

@@ -20,8 +20,8 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				sans: ['Inter', 'ui-sans-serif', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-				heading: ['Fraunces', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+				sans: ['Manrope', 'ui-sans-serif', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+				heading: ['Space Grotesk', 'Manrope', 'ui-sans-serif', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',

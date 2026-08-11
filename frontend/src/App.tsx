@@ -24,6 +24,7 @@ import CropRecommendations from '@/pages/CropRecommendations';
 import CustomQueries from '@/pages/CustomQueries';
 import DataHub from '@/pages/DataHub';
 import DistrictMaps from '@/pages/DistrictMaps';
+import FarmerDashboard from '@/pages/FarmerDashboard';
 import FarmerDirectory from '@/pages/FarmerDirectory';
 import FarmerProfile from '@/pages/FarmerProfile';
 import FarmFieldDetail from '@/pages/FarmFieldDetail';
@@ -69,7 +70,7 @@ function RoleHomeRedirect() {
   if (role === 'researcher') return <Navigate to='/data-hub' replace />;
   if (role === 'maaif official') return <Navigate to='/policy-dashboard' replace />;
   if (role === 'development partner') return <Navigate to='/monitoring-dashboard' replace />;
-  if (role === 'farmer') return <Navigate to='/weather-alerts' replace />;
+  if (role === 'farmer') return <Navigate to='/farmer-dashboard' replace />;
   if (role === 'public visitor') return <Navigate to='/public-maps' replace />;
   return <Navigate to='/farm-management' replace />;
 }
@@ -128,6 +129,7 @@ const App = () => (
                     <Route path='beneficiary-tracking' element={<ProtectedRoute requiredPermission='development partner'><BeneficiaryTracking /></ProtectedRoute>} />
                     <Route path='public-reports' element={<ProtectedRoute requiredPermission='farmer,extension worker,researcher,maaif official,development partner,public visitor'><PublicReports /></ProtectedRoute>} />
                     <Route path='settings' element={<ProtectedRoute requiredPermission='farmer,extension worker,researcher,maaif official,development partner,public visitor'><Settings /></ProtectedRoute>} />
+                    <Route path='farmer-dashboard' element={<ProtectedRoute requiredPermission='farmer'><FarmerDashboard /></ProtectedRoute>} />
                     <Route path='weather-alerts' element={<ProtectedRoute requiredPermission='farmer'><WeatherAlerts /></ProtectedRoute>} />
                     <Route path='pest-disease-warnings' element={<ProtectedRoute requiredPermission='farmer'><PestDiseaseWarnings /></ProtectedRoute>} />
                     <Route path='crop-recommendations' element={<ProtectedRoute requiredPermission='farmer'><CropRecommendations /></ProtectedRoute>} />

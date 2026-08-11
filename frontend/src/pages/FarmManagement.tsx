@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from '@/lib/toast';
 import {
@@ -44,7 +44,7 @@ export default function FarmManagement() {
 
     function gotoFarmerProfile(farmerId: string | undefined) {
         if (!farmerId) return;
-        navigate(`/extension/farmers/${farmerId}`);
+        navigate(`/farmer-directory/${farmerId}`);
     }
 
 
@@ -64,6 +64,31 @@ export default function FarmManagement() {
     const [alertStatus, setAlertStatus] = useState('');
     const [lastVisitBefore, setLastVisitBefore] = useState('');
     const [complianceRateBelow, setComplianceRateBelow] = useState('');
+
+    const districtSummary = useMemo(() => {
+        const buckets = new Map<string, { total: number; alerts: number; avgCompliance: number; complianceCount: number }>();
+        for (const farmer of farmers) {
+            const districtName = (farmer.district || 'Unknown').trim() || 'Unknown';
+            const current = buckets.get(districtName) ?? { total: 0, alerts: 0, avgCompliance: 0, complianceCount: 0 };
+            current.total += 1;
+            if ((farmer.active_alert_status ?? 'none') !== 'none') current.alerts += 1;
+            const compliance = Number(farmer.advisory_compliance_rate ?? NaN);
+            if (!Number.isNaN(compliance)) {
+                current.avgCompliance += compliance;
+                current.complianceCount += 1;
+            }
+            buckets.set(districtName, current);
+        }
+        return Array.from(buckets.entries())
+            .map(([districtName, value]) => ({
+                districtName,
+                total: value.total,
+                alerts: value.alerts,
+                compliance: value.complianceCount > 0 ? Math.round(value.avgCompliance / value.complianceCount) : 0,
+            }))
+            .sort((a, b) => b.total - a.total)
+            .slice(0, 6);
+    }, [farmers]);
 
     useEffect(() => { void loadFarmers(); }, [farmersPage, district, crop, alertStatus, lastVisitBefore, complianceRateBelow]);
     useEffect(() => { void loadFarmManagementItem(); }, []);
@@ -112,8 +137,8 @@ export default function FarmManagement() {
 
     return (
         <div className="p-6 md:p-8 space-y-6">
-            <div>
-                <h1 className="text-2xl md:text-3xl font-heading font-bold">Farm Management</h1>
+            <div className="rounded-2xl border border-border/50 bg-card/80 p-6 shadow-sm">
+                <h1 className="text-2xl md:text-3xl font-heading font-bold">Extension Worker Dashboard</h1>
                 <p className="text-sm text-muted-foreground mt-1">
                     Overview of registered farmers, pending visits, active alerts, and advisory compliance across your assigned district.
                 </p>
@@ -192,6 +217,44 @@ export default function FarmManagement() {
                     </CardContent>
                 </Card>
             </div>
+
+            {/* District-level breakdown */}
+            <Card className="bg-card/80 backdrop-blur-sm border border-border/60 shadow-sm rounded-xl">
+                <CardHeader>
+                    <CardTitle className="font-heading">District-Level Breakdown</CardTitle>
+                    <CardDescription>Top districts by active farmer records in your current view.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    {districtSummary.length === 0 ? (
+                        <p className="text-sm text-muted-foreground">No district data available for breakdown.</p>
+                    ) : (
+                        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                            {districtSummary.map((row) => (
+                                <div key={row.districtName} className="rounded-xl border border-border/50 bg-background/60 p-4 space-y-2">
+                                    <div className="flex items-center justify-between">
+                                        <p className="font-semibold">{row.districtName}</p>
+                                        <Badge variant="outline">{row.total} farmers</Badge>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                            <span>Alerts</span>
+                                            <span>{row.alerts}</span>
+                                        </div>
+                                        <Progress value={Math.min(100, row.alerts * 10)} className="h-1.5" />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <div className="flex items-center justify-between text-xs text-muted-foreground">
+                                            <span>Avg. compliance</span>
+                                            <span>{row.compliance}%</span>
+                                        </div>
+                                        <Progress value={row.compliance} className="h-1.5" />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </CardContent>
+            </Card>
 
             {/* Filters */}
             <Card className="bg-card/60 backdrop-blur-md border border-border/50 shadow-lg rounded">

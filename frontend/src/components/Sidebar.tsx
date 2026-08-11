@@ -57,13 +57,13 @@ type NavItem = { label: string; href: string; icon: React.ElementType };
 
 const ROLE_NAV: Record<string, NavItem[]> = {
   farmer: [
-    { label: "Weather Alerts",         href: "/weather-alerts",        icon: CloudLightning },
-    { label: "Pest & Disease Warnings", href: "/pest-disease-warnings", icon: Bug },
-    { label: "Crop Recommendations",   href: "/crop-recommendations",  icon: Sprout },
-    { label: "Crop Monitoring",        href: "/crop-monitoring",       icon: Radar },
-    { label: "Satellite Map",          href: "/sentinel-map",          icon: Satellite },
-    { label: "My Farm",                href: "/my-farm",               icon: Tractor },
-    { label: "Market Prices",          href: "/market-prices",         icon: TrendingUp },
+    { label: "My Farm",                                   href: "/farmer-dashboard",      icon: Tractor },
+    { label: "Recommendations",                           href: "/crop-recommendations",  icon: Sprout },
+    { label: "Farm Performance / Percentages",            href: "/crop-monitoring",       icon: Radar },
+    { label: "Warnings and Alerts",                       href: "/pest-disease-warnings", icon: Bug },
+    { label: "Satellite Maps",                            href: "/sentinel-map",          icon: Satellite },
+    { label: "Weather Information",                       href: "/weather-alerts",        icon: CloudLightning },
+    { label: "Market Information and Market Conditions",  href: "/market-prices",         icon: TrendingUp },
   ],
   "extension worker": [
     { label: "Farm Management",   href: "/farm-management",   icon: LayoutGrid },
@@ -99,12 +99,6 @@ const ROLE_NAV: Record<string, NavItem[]> = {
     { label: "Programme KPIs",       href: "/programme-kpis",       icon: Gauge },
     { label: "Beneficiary Tracking", href: "/beneficiary-tracking", icon: Users },
     { label: "Satellite Map",        href: "/sentinel-map",         icon: Satellite },
-  ],
-  "development partner": [
-    { label: "Monitoring Dashboard", href: "/monitoring-dashboard", icon: Activity },
-    { label: "Impact Assessment", href: "/impact-assessment", icon: Target },
-    { label: "Programme KPIs", href: "/programme-kpis", icon: Gauge },
-    { label: "Beneficiary Tracking", href: "/beneficiary-tracking", icon: Users },
   ],
   "public visitor": [
     { label: "Public Maps", href: "/public-maps", icon: Map },

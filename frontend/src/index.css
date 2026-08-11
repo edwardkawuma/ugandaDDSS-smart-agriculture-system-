@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap'); /* ui-look-font */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,63 +17,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* ─── Light Theme — Uganda Agricultural (Forest Green / Earth Brown / Golden) ─── */
+    /* ─── Light Theme — clean agricultural modern ─── */
 
-    /* Page canvas — light beige (#F5F5DC → HSL 60 56% 91%) */
-    --background: 60 56% 91%;
-    --foreground: 25 60% 12%;
+    --background: 48 38% 96%;
+    --foreground: 160 25% 14%;
 
-    /* Cards & panels — warm white */
     --card: 0 0% 100%;
-    --card-foreground: 25 60% 12%;
+    --card-foreground: 160 25% 14%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 60% 12%;
+    --popover-foreground: 160 25% 14%;
 
-    /* Primary: forest green (#228B22 → HSL 120 61% 34%) */
-    --primary: 120 61% 34%;
+    --primary: 154 58% 33%;
     --primary-foreground: 0 0% 100%;
-    --primary-rgb: 34 139 34;
+    --primary-rgb: 36 132 89;
 
-    /* Secondary: earth brown (#8B4513 → HSL 25 75% 31%) */
-    --secondary: 25 75% 31%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 40 38% 35%;
+    --secondary-foreground: 48 38% 96%;
 
     /* Muted */
-    --muted: 60 20% 88%;
-    --muted-foreground: 25 20% 40%;
+    --muted: 44 26% 89%;
+    --muted-foreground: 150 10% 36%;
 
-    /* Accent: golden yellow (#FFD700 → HSL 51 100% 50%) */
-    --accent: 51 100% 50%;
-    --accent-foreground: 25 60% 12%;
+    --accent: 42 90% 57%;
+    --accent-foreground: 160 25% 14%;
 
     /* ── Status Colors ── */
-    --success: 120 61% 34%;
+    --success: 154 58% 33%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
+    --warning: 31 91% 52%;
     --warning-foreground: 0 0% 100%;
     --destructive: 350 80% 55%;
     --destructive-foreground: 0 0% 100%;
-    --teal: 168 80% 38%;
+    --teal: 175 67% 34%;
     --teal-foreground: 0 0% 100%;
-    --amber: 51 100% 50%;
-    --amber-foreground: 25 60% 12%;
+    --amber: 42 90% 57%;
+    --amber-foreground: 160 25% 14%;
 
     /* ── Semantic Aliases (status colors used by components) ── */
     --info: 200 85% 50%;
     --info-foreground: 0 0% 100%;
     --purple: 280 65% 58%;
     --purple-foreground: 0 0% 100%;
-    --neutral: 25 20% 50%;
+    --neutral: 145 8% 48%;
     --neutral-foreground: 0 0% 100%;
 
     /* Borders and Inputs */
-    --border: 25 15% 80%;
-    --input: 25 15% 80%;
-    --ring: 120 61% 34%;
+    --border: 42 18% 78%;
+    --input: 42 18% 78%;
+    --ring: 154 58% 33%;
 
     /* Border Radius */
-    --radius: 0.25rem;
+    --radius: 0.65rem;
 
     /* Auth Page */
     --auth-bg: 60 40% 93%;
@@ -84,8 +79,8 @@ All colors MUST be HSL.
     --auth-panel-muted: 0 0% 100% / 0.4;
 
     /* Gradient used by Storage / featured cards — green to golden */
-    --gradient-blue-start: 120 61% 20%;
-    --gradient-blue-end: 51 100% 45%;
+    --gradient-blue-start: 154 58% 24%;
+    --gradient-blue-end: 42 90% 52%;
 
     /* ── Animation Tokens ── */
     --animation-duration-fast: 150ms;
@@ -114,54 +109,51 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* ─── Dark Theme — Uganda Agricultural (deep forest) ─── */
+    /* ─── Dark Theme — deep field night ─── */
 
-    --background: 120 25% 6%;
-    --foreground: 60 30% 92%;
+    --background: 156 30% 8%;
+    --foreground: 48 25% 92%;
 
-    --card: 120 20% 10%;
-    --card-foreground: 60 30% 92%;
+    --card: 156 20% 12%;
+    --card-foreground: 48 25% 92%;
 
-    --popover: 120 20% 10%;
-    --popover-foreground: 60 30% 92%;
+    --popover: 156 20% 12%;
+    --popover-foreground: 48 25% 92%;
 
-    /* Primary: lighter forest green for dark backgrounds */
-    --primary: 120 55% 48%;
+    --primary: 152 58% 52%;
     --primary-foreground: 0 0% 100%;
-    --primary-rgb: 61 171 61;
+    --primary-rgb: 72 204 142;
 
-    /* Secondary: muted earth brown */
-    --secondary: 25 50% 20%;
-    --secondary-foreground: 60 30% 92%;
+    --secondary: 36 32% 24%;
+    --secondary-foreground: 48 25% 92%;
 
-    --muted: 25 30% 16%;
-    --muted-foreground: 25 15% 55%;
+    --muted: 152 15% 17%;
+    --muted-foreground: 43 14% 67%;
 
-    /* Accent: muted golden for dark */
-    --accent: 51 80% 42%;
+    --accent: 40 78% 54%;
     --accent-foreground: 0 0% 100%;
 
-    --success: 120 55% 48%;
+    --success: 152 58% 52%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 55%;
+    --warning: 31 92% 56%;
     --warning-foreground: 0 0% 100%;
     --destructive: 350 80% 58%;
     --destructive-foreground: 0 0% 100%;
-    --teal: 168 80% 45%;
+    --teal: 176 64% 45%;
     --teal-foreground: 0 0% 100%;
-    --amber: 51 80% 50%;
+    --amber: 40 78% 54%;
     --amber-foreground: 0 0% 5%;
 
     --info: 200 85% 56%;
     --info-foreground: 0 0% 100%;
     --purple: 280 65% 65%;
     --purple-foreground: 0 0% 5%;
-    --neutral: 25 15% 56%;
+    --neutral: 146 8% 62%;
     --neutral-foreground: 0 0% 100%;
 
-    --border: 120 20% 18%;
-    --input: 120 20% 18%;
-    --ring: 120 55% 48%;
+    --border: 154 14% 25%;
+    --input: 154 14% 25%;
+    --ring: 152 58% 52%;
 
     --auth-bg: 120 25% 5%;
     --auth-card-bg: 120 20% 9%;
