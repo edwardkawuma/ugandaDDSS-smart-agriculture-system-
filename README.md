@@ -116,9 +116,11 @@ Demo credentials (mock mode): `farmer@demo.com` / `Demo@1234`
 ## Deploy on Vercel
 
 This repository is configured for Vercel with:
-- Static frontend output from `frontend/dist`
-- Serverless API handler at `api/index.mjs` (backed by `backend/server.js`)
-- Rewrite of `/api/*` requests to the serverless function
+- `services` mode with two services in `vercel.json`:
+	- `frontend` (Vite, root `frontend`)
+	- `backend` (Express, root `backend`, entrypoint `server.js`)
+- Rewrite of `/api/*` requests to the backend service
+- Rewrite of all other routes to the frontend service
 
 Steps:
 
@@ -128,14 +130,10 @@ npm run install:all
 npm run build --prefix frontend
 ```
 
-Then import the repository into Vercel and deploy. The root `vercel.json` already sets:
-- `installCommand`
-- `buildCommand`
-- `outputDirectory`
-- function runtime + rewrites
+Then import the repository into Vercel and deploy. Ensure the Vercel project uses `services` mode and reads the root `vercel.json`.
 
 Important:
-- `frontend/.env.production` is set with `VITE_USE_MOCK=true` so the deployed UI always has demo data even if API/serverless routes are unavailable.
+- `frontend/.env.production` is set with `VITE_USE_MOCK=true` so the deployed UI always has demo data even if API routes are temporarily unavailable.
 - For full live backend usage in production, set `VITE_USE_MOCK=false` in Vercel environment variables and ensure backend runtime dependencies/env vars are fully configured.
 
 Optional environment variables in Vercel project settings:
