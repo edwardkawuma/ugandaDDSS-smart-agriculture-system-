@@ -52,6 +52,31 @@ type MarketPrice = MarketPricesListResponse['data'][number];
 type Crop = CropsListResponse['data'][number];
 type PriceAlert = PriceAlertsListResponse['data'][number];
 
+const DEMO_TREND_DATA: NonNullable<MarketPricesTrendsResponse['data']> = {
+    crop: 'Maize',
+    district: 'Mbarara',
+    period_days: 30,
+    trend_data: [
+        { date: '2026-07-13', price: 1150, market: 'Mbarara Market' },
+        { date: '2026-07-18', price: 1225, market: 'Mbarara Market' },
+        { date: '2026-07-23', price: 1280, market: 'Mbarara Market' },
+        { date: '2026-07-28', price: 1340, market: 'Mbarara Market' },
+        { date: '2026-08-02', price: 1315, market: 'Mbarara Market' },
+        { date: '2026-08-07', price: 1385, market: 'Mbarara Market' },
+        { date: '2026-08-11', price: 1410, market: 'Mbarara Market' },
+    ],
+    price_min: 1150,
+    price_max: 1410,
+    price_avg: 1294,
+    price_change_pct: 22.6,
+};
+
+const DEMO_MARKET_PRICES: MarketPrice[] = [
+    { id: 'demo-mp-1', crop: 'Maize', market_name: 'Mbarara Market', district: 'Mbarara', farm_gate_price: 1080, market_price: 1280, export_price: 0, unit: 'UGX/kg', recorded_date: '2026-08-11' },
+    { id: 'demo-mp-2', crop: 'Beans', market_name: 'Kabale Central Market', district: 'Kabale', farm_gate_price: 2400, market_price: 2750, export_price: 0, unit: 'UGX/kg', recorded_date: '2026-08-11' },
+    { id: 'demo-mp-3', crop: 'Coffee (Robusta)', market_name: 'Mukono Buying Centre', district: 'Mukono', farm_gate_price: 5200, market_price: 6100, export_price: 6900, unit: 'UGX/kg', recorded_date: '2026-08-11' },
+];
+
 export default function MarketPrices() {
 
 
@@ -111,11 +136,14 @@ export default function MarketPrices() {
                 market: filterMarket || undefined,
                 district: filterDistrict || undefined,
             });
-            setMarketPrices(Array.isArray(res?.data) ? res.data : []);
-            setMarketPricesTotal(typeof res?.total === 'number' ? res.total : 0);
+            const data = Array.isArray(res?.data) ? res.data : [];
+            setMarketPrices(data.length > 0 ? data : DEMO_MARKET_PRICES);
+            setMarketPricesTotal(typeof res?.total === 'number' && res.total > 0 ? res.total : DEMO_MARKET_PRICES.length);
         } catch (err) {
             toast.error('Failed to load marketPrices');
             console.error('[loadMarketPrices]', err);
+            setMarketPrices(DEMO_MARKET_PRICES);
+            setMarketPricesTotal(DEMO_MARKET_PRICES.length);
         } finally {
             setLoadingMarketPrices(false);
         }
@@ -212,10 +240,11 @@ export default function MarketPrices() {
         try {
             setLoadingTrend(true);
             const res = await marketPricesService.trends({ crop, period_days: periodDays, district: district || undefined });
-            setTrendData(res?.data ?? null);
+            setTrendData(res?.data ?? { ...DEMO_TREND_DATA, crop, district: district || DEMO_TREND_DATA.district, period_days: periodDays });
         } catch (err) {
             toast.error('Failed to load price trends');
             console.error('[loadTrends]', err);
+            setTrendData({ ...DEMO_TREND_DATA, crop, district: district || DEMO_TREND_DATA.district, period_days: periodDays });
         } finally {
             setLoadingTrend(false);
         }

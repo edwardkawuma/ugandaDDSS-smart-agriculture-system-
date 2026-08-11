@@ -73,6 +73,18 @@ const NDVI_SERIES: Record<string, Array<{ date: string; ndvi: number; evi: numbe
 const UGANDA_CROPS = ['Coffee (Robusta)', 'Maize', 'Beans', 'Bananas (Matooke)', 'Cassava'];
 const UGANDA_DISTRICTS = ['All Districts', 'Mukono', 'Mbarara', 'Kabale', 'Masindi', 'Gulu', 'Jinja', 'Mbale', 'Arua', 'Lira'];
 
+const UAV_CROP_IMAGES: Record<string, string> = {
+  'Coffee (Robusta)': '/images/coffee.png',
+  Maize: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&w=800&q=80',
+  Beans: '/images/beans-red-dry-user.png',
+  'Bananas (Matooke)': 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=800&q=80',
+  Cassava: '/images/cassava-user.png',
+};
+
+function getUavCropImage(crop: string, fallbackUrl?: string) {
+  return UAV_CROP_IMAGES[crop] ?? fallbackUrl ?? '/images/auxano.png';
+}
+
 // ── Helper components ─────────────────────────────────────────────────────────
 
 function HealthBar({ score }: { score: number }) {
@@ -561,7 +573,7 @@ export default function CropMonitoring() {
                   {/* Thumbnail */}
                   <div className="relative aspect-video w-full overflow-hidden bg-muted">
                     <img
-                      src={scan.thumbnail_url}
+                      src={getUavCropImage(scan.crop, scan.thumbnail_url)}
                       alt={`UAV scan — ${scan.crop}`}
                       loading="lazy"
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"

@@ -113,6 +113,35 @@ Demo credentials (mock mode): `farmer@demo.com` / `Demo@1234`
 
 ---
 
+## Deploy on Vercel
+
+This repository is configured for Vercel with:
+- Static frontend output from `frontend/dist`
+- Serverless API handler at `api/index.mjs` (backed by `backend/server.js`)
+- Rewrite of `/api/*` requests to the serverless function
+
+Steps:
+
+```bash
+# from repo root
+npm run install:all
+npm run build --prefix frontend
+```
+
+Then import the repository into Vercel and deploy. The root `vercel.json` already sets:
+- `installCommand`
+- `buildCommand`
+- `outputDirectory`
+- function runtime + rewrites
+
+Optional environment variables in Vercel project settings:
+- `NODE_ENV=production`
+- `DATABASE_URL` (if using remote SQL)
+- `JWT_SECRET`
+- any Google Earth Engine / external API credentials used by backend routes
+
+---
+
 ## Data Sources
 
 - **MAAIF** — Ministry of Agriculture, Animal Industry and Fisheries

@@ -51,6 +51,56 @@ import {
 type Weather = WeatherForecastResponse['data'][number];
 type AlertItem = AlertsListResponse['data'][number];
 
+const DEMO_CURRENT_WEATHER: NonNullable<WeatherCurrentResponse['data']> = {
+  district: 'Mukono',
+  temperature: 26,
+  rainfall: 4,
+  humidity: 74,
+  wind_speed: 11,
+  condition: 'Partly Cloudy',
+  anomaly_flag: false,
+  season_position: 'Long Rains',
+  recorded_at: new Date().toISOString(),
+};
+
+const DEMO_FORECAST: Weather[] = [
+  { date: '2026-08-12', temperature_min: 17, temperature_max: 26, rainfall: 2, humidity: 72, wind_speed: 10, condition: 'Partly Cloudy' },
+  { date: '2026-08-13', temperature_min: 18, temperature_max: 27, rainfall: 6, humidity: 76, wind_speed: 12, condition: 'Light Rain' },
+  { date: '2026-08-14', temperature_min: 17, temperature_max: 25, rainfall: 9, humidity: 81, wind_speed: 9, condition: 'Rain Showers' },
+  { date: '2026-08-15', temperature_min: 16, temperature_max: 24, rainfall: 4, humidity: 78, wind_speed: 8, condition: 'Cloudy' },
+  { date: '2026-08-16', temperature_min: 17, temperature_max: 26, rainfall: 1, humidity: 70, wind_speed: 11, condition: 'Sunny Intervals' },
+  { date: '2026-08-17', temperature_min: 18, temperature_max: 27, rainfall: 3, humidity: 68, wind_speed: 10, condition: 'Partly Cloudy' },
+  { date: '2026-08-18', temperature_min: 17, temperature_max: 25, rainfall: 7, humidity: 79, wind_speed: 9, condition: 'Rain' },
+  { date: '2026-08-19', temperature_min: 16, temperature_max: 24, rainfall: 5, humidity: 77, wind_speed: 8, condition: 'Cloudy' },
+  { date: '2026-08-20', temperature_min: 17, temperature_max: 26, rainfall: 2, humidity: 71, wind_speed: 10, condition: 'Fair' },
+  { date: '2026-08-21', temperature_min: 18, temperature_max: 28, rainfall: 0, humidity: 65, wind_speed: 12, condition: 'Sunny' },
+];
+
+const DEMO_ALERTS: AlertItem[] = [
+  {
+    id: 'demo-alert-1',
+    type: 'weather',
+    alert_level: 'warning',
+    title: 'Heavy rain likely in the next 72 hours',
+    description: 'Drain low-lying fields and avoid fertilizer application before the rainfall peak.',
+    district: 'Mukono',
+    agro_ecological_zone: 'Lake Victoria Crescent',
+    issued_at: '2026-08-11T08:00:00Z',
+    affected_crops: ['Beans', 'Maize'],
+  } as AlertItem,
+  {
+    id: 'demo-alert-2',
+    type: 'weather',
+    alert_level: 'watch',
+    title: 'Warm, humid conditions favor disease spread',
+    description: 'Monitor coffee and banana fields for early disease symptoms after rainfall.',
+    district: 'Mbarara',
+    agro_ecological_zone: 'South Western Highlands',
+    issued_at: '2026-08-10T14:00:00Z',
+    affected_crops: ['Coffee (Robusta)', 'Bananas'],
+  } as AlertItem,
+];
+
 export default function WeatherAlerts() {
     const navigate = useNavigate();
 
@@ -97,10 +147,11 @@ export default function WeatherAlerts() {
         try {
             setLoadingWeatherItem(true);
             const res = await weatherService.current();
-            setWeatherItem(res?.data ?? null);
+        setWeatherItem(res?.data ?? DEMO_CURRENT_WEATHER);
         } catch (err) {
             toast.error('Failed to load current conditions');
             console.error('[loadWeatherItem]', err);
+        setWeatherItem(DEMO_CURRENT_WEATHER);
         } finally {
             setLoadingWeatherItem(false);
         }
@@ -109,10 +160,11 @@ export default function WeatherAlerts() {
         try {
             setLoadingWeather(true);
             const res = await weatherService.forecast({ limit: weatherLimit });
-            setWeather(Array.isArray(res?.data) ? res.data : []);
+        setWeather(Array.isArray(res?.data) && res.data.length > 0 ? res.data : DEMO_FORECAST);
         } catch (err) {
             toast.error('Failed to load forecast');
             console.error('[loadWeather]', err);
+        setWeather(DEMO_FORECAST);
         } finally {
             setLoadingWeather(false);
         }
@@ -121,11 +173,14 @@ export default function WeatherAlerts() {
         try {
             setLoadingAlerts(true);
             const res = await alertsService.list({ page: alertsPage, limit: alertsLimit });
-            setAlerts(Array.isArray(res?.data) ? res.data : []);
-            setAlertsTotal(typeof res?.total === 'number' ? res.total : 0);
+        const data = Array.isArray(res?.data) ? res.data : [];
+        setAlerts(data.length > 0 ? data : DEMO_ALERTS);
+        setAlertsTotal(typeof res?.total === 'number' && res.total > 0 ? res.total : DEMO_ALERTS.length);
         } catch (err) {
             toast.error('Failed to load alerts');
             console.error('[loadAlerts]', err);
+        setAlerts(DEMO_ALERTS);
+        setAlertsTotal(DEMO_ALERTS.length);
         } finally {
             setLoadingAlerts(false);
         }

@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
+import { pathToFileURL } from 'url';
 import { geeRouter } from './gee/routes.js';
 import { authRouter } from './auth/routes.js';
 import { mapsRouter } from './serpapi/routes.js';
@@ -37,11 +38,7 @@ app.use('/api/timeseries', timeseriesRouter);
 app.use('/api', demoDataRouter);
 
 async function bootstrap() {
-  await initSqlStore();
-  const store = getStoreInfo();
-  console.log(`[db] SQL store mode: ${store.mode}${store.path ? ` (${store.path})` : ''}`);
-  await seedDemoUsers();
-  await startSyncService();
+  await initBackend();
 
   app.listen(PORT, () => {
     console.log(`AgriSmart DDSS API listening on http://localhost:${PORT}`);
@@ -56,7 +53,32 @@ async function bootstrap() {
   });
 }
 
-bootstrap().catch((err) => {
-  console.error('Failed to start server:', err);
-  process.exit(1);
-});
+let initPromise;
+
+export async function initBackend() {
+  if (initPromise) return initPromise;
+
+  initPromise = (async () => {
+    await initSqlStore();
+    const store = getStoreInfo();
+    console.log(`[db] SQL store mode: ${store.mode}${store.path ? ` (${store.path})` : ''}`);
+    await seedDemoUsers();
+    // The sync worker is useful in long-running local servers but unnecessary for serverless invocations.
+    if (!process.env.VERCEL) {
+      await startSyncService();
+    }
+  })();
+
+  return initPromise;
+}
+
+export default app;
+
+const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+
+if (isDirectRun) {
+  bootstrap().catch((err) => {
+    console.error('Failed to start server:', err);
+    process.exit(1);
+  });
+}
