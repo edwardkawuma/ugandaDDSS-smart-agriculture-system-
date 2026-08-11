@@ -134,6 +134,10 @@ Then import the repository into Vercel and deploy. The root `vercel.json` alread
 - `outputDirectory`
 - function runtime + rewrites
 
+Important:
+- `frontend/.env.production` is set with `VITE_USE_MOCK=true` so the deployed UI always has demo data even if API/serverless routes are unavailable.
+- For full live backend usage in production, set `VITE_USE_MOCK=false` in Vercel environment variables and ensure backend runtime dependencies/env vars are fully configured.
+
 Optional environment variables in Vercel project settings:
 - `NODE_ENV=production`
 - `DATABASE_URL` (if using remote SQL)
