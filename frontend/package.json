@@ -8,7 +8,7 @@
     "build": "npm run check:require && vite build",
     "build:dev": "npm run check:require && vite build --mode development",
     "lint": "eslint .",
-    "check:require": "node --eval \"const {execSync} = require('child_process'); try { execSync('grep -rn \"require(\" src --include=\"*.ts\" --include=\"*.tsx\"', { stdio: 'pipe' }); console.error('✖ require() is not allowed in our ESM build. Replace it with import statements and follow ESLint rules (no-restricted-globals/no-restricted-syntax).'); process.exit(1); } catch (err) { if (err.status && err.status !== 1) throw err; }\"",
+    "check:require": "node scripts/check-require.cjs",
     "preview": "vite preview"
   },
   "dependencies": {
